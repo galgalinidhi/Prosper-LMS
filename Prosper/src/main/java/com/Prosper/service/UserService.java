@@ -38,12 +38,14 @@ public class UserService {
 			userResponse = new UserResponse();
 			userResponse.userId = Integer.parseInt(userIdUserName);
 			userResponse.response = "Username already exists!";
+			logger.info("userRegisterService : userId: "+userIdUserName + " exists username: " + userRequestModel.userName);
 			return userResponse;
 		}
 		else if(userIdEmailId != null) {
 			userResponse = new UserResponse();
 			userResponse.userId = Integer.parseInt(userIdEmailId);
 			userResponse.response = "User email already exists!";
+			logger.info("userRegisterService : userId: "+userIdUserName + " exists email: " + userRequestModel.emailId);
 			return userResponse;
 		}
 		else {
@@ -61,6 +63,7 @@ public class UserService {
 			String userId = userRepository.findUserByUserName(userRequestModel.userName);
 			userResponse.userId = Integer.parseInt(userId);
 			userResponse.response = "User registred successfully!";
+			logger.info("userRegisterService : new userId: "+userId + " exists username: " + userRequestModel.userName);
 			return userResponse;
 		}
 		
@@ -90,7 +93,7 @@ public class UserService {
 			userResponse = new UserResponse();
 			userResponse.userId = -1;
 			userResponse.response = "Incorrect password!";
-			logger.info("Service : POST User Correct Authentication: user_id = "+userResponse.userId +" UserName: " + userRegisterRequest.userName + " Password Auth: "+authentication);
+			logger.info("Service : POST User incorrect Authentication: user_id = "+userResponse.userId +" UserName: " + userRegisterRequest.userName + " Password Auth: "+authentication);
 			return userResponse;
 		}
 	}

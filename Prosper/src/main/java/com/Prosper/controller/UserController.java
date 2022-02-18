@@ -31,7 +31,7 @@ public class UserController {
 	
 	@PostMapping("/register")
 	public UserResponse userData(@RequestBody UserRequest userRequestModel) {
-		logger.info("controller : user/register");
+		logger.info("controller : user/register [POST]");
 		return userService.userRegisterService(userRequestModel); 
 	}
 	
