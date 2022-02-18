@@ -12,7 +12,7 @@
 	<artifactId>Prosper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Prosper</name>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<description>Prosper Backend services</description>
 	<properties>
 		<java.version>11</java.version>
@@ -63,6 +63,12 @@
             <artifactId>jbcrypt</artifactId>
 	    <version>0.3m</version>
         </dependency>
+        
+		 <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-tomcat</artifactId>
+		  <scope>provided</scope>
+		 </dependency>
 	</dependencies>
 
 	<build>
@@ -79,10 +85,20 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<!-- <plugin>
+			    <artifactId>maven-war-plugin</artifactId>
+
+			</plugin> -->
 			<plugin>
-			 <groupId>org.springframework.boot</groupId>
-			 <artifactId>spring-boot-maven-plugin</artifactId>
-			 </plugin>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <configuration>
+			        <webResources>
+			            <resource>
+			                <directory>propser-deploy</directory>
+			            </resource>
+			        </webResources>
+			    </configuration>
+			</plugin>
 		</plugins>
 	</build>
 
