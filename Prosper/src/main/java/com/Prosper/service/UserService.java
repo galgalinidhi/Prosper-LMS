@@ -1,6 +1,8 @@
 package com.Prosper.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.Prosper.entity.UserEntity;
@@ -17,6 +19,12 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.UnsupportedEncodingException;
+import java.util.UUID;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Log4j2
@@ -24,6 +32,9 @@ import org.apache.logging.log4j.Logger;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	
+	 @Autowired
+	 private JavaMailSender mailSender;
 	
 	private UserEntity userEntity = new UserEntity();
 	
@@ -107,6 +118,89 @@ public class UserService {
 			return true;
 		else
 			return false;
+	}
+
+	public UserResponse postForgotPasswordService(UserRequest userRegisterRequest) {
+		String userId = "";
+		if(userRegisterRequest.userName != null) {
+			userId = userRepository.findUserByUserName(userRegisterRequest.userName);
+		}
+		else {
+			userId = userRepository.findUserByEmailId(userRegisterRequest.emailId);
+		}
+		
+		if(userId == null) {
+			userResponse = new UserResponse();
+			userResponse.userId = -1;
+			userResponse.response = "Entered username or email does not exists! Please register";
+			return userResponse;
+		}
+		else {
+			userResponse = new UserResponse();
+//			userEntity =  new UserEntity();
+			String token = UUID.randomUUID().toString();
+			UserEntity userEntity = userRepository.findByUserId((long)Integer.parseInt(userId));
+			System.out.println(userEntity.toString());
+//			userEntity.userId = (long) Integer.parseInt(userId);
+			userEntity.resetPasswordToken = token;
+			userRepository.save(userEntity);
+			System.out.println("User saved");
+			try {
+				String resetPasswordLink = "http://localhost:8989/user" + "/reset_password?token=" + token;
+				 sendEmail(userRegisterRequest.emailId, resetPasswordLink);
+			} catch (UnsupportedEncodingException | MessagingException e) {
+		        logger.error("Error while sending email");
+		    }
+			userResponse.userId = Integer.parseInt(userId);
+			userResponse.token = token;
+			userResponse.response = "Email sent successfully!";
+			return userResponse;
+		}
+	}
+	
+	public void sendEmail(String recipientEmail, String link)
+	        throws MessagingException, UnsupportedEncodingException {
+	    MimeMessage message = mailSender.createMimeMessage();              
+	    MimeMessageHelper helper = new MimeMessageHelper(message);
+	     
+	    helper.setFrom("csci.p565.prosper@gmail.com", "Software Engineering");
+	    helper.setTo(recipientEmail);
+	     
+	    String subject = "Here's the link to reset your password!!";
+	     
+	    String content = "<p>Hello,</p>"
+	            + "<p>You have requested to reset your password.</p>"
+	            + "<p>Click the link below to change your password:</p>"
+	            + "<p><a href=\"" + link + "\">Change my password</a></p>"
+	            + "<br>"
+	            + "<p>Ignore this email if you do remember your password, "
+	            + "or you have not made the request.</p>";
+	     
+	    helper.setSubject(subject);
+	     
+	    helper.setText(content, true);
+	     
+	    mailSender.send(message);
+	}
+
+	public UserResponse postResetPasswordService(String token, UserRequest userRegisterRequest) {
+		
+		UserEntity userEntity = userRepository.findByResetPasswordToken(token);
+		
+		if(userEntity == null) {
+			userResponse = new UserResponse();
+			userResponse.response = "Invalid Token!!";
+			return userResponse;
+		}else {
+			userResponse = new UserResponse();
+			String hashPassword = hashPassword(userRegisterRequest.password);
+			userEntity.password = hashPassword;
+			userRepository.save(userEntity);
+			String userIdDB = userRepository.findUserByEmailId(userEntity.emailId);
+			userResponse.userId = Integer.parseInt(userIdDB);
+			userResponse.response = "Password Changed Successfully";
+			return userResponse;
+		}
 	}
 
 }

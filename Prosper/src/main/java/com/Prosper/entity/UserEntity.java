@@ -32,4 +32,7 @@ public class UserEntity {
 
 	 @Getter @Setter(AccessLevel.PACKAGE)
 	 public String roleId;
+	 
+	 @Getter @Setter(AccessLevel.PACKAGE)
+	 public String resetPasswordToken;
 }

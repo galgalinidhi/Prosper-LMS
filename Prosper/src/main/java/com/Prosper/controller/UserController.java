@@ -4,6 +4,8 @@ package com.Prosper.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,7 @@ import lombok.extern.log4j.Log4j2;
 @AllArgsConstructor
 @Log4j2
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 	
@@ -39,6 +42,18 @@ public class UserController {
 	public UserResponse postUserAuthentication(@RequestBody UserRequest userRegisterRequest) {
 		logger.info("controller : user/authentication [POST]");
 		return userService.postUserAuthenticationService(userRegisterRequest);
+	}
+	
+	@PostMapping("/forgot/password")
+	public UserResponse postForgotPassword(@RequestBody UserRequest userRegisterRequest) {
+		logger.info("controller : user/forgot/password [POST]");
+		return userService.postForgotPasswordService(userRegisterRequest);
+	}
+	
+	@PostMapping("/reset_password")
+	public UserResponse postResetPassword(@Param(value = "token") String token, @RequestBody UserRequest userRegisterRequest) {
+		logger.info("controller : user/forgot/password [POST]");
+		return userService.postResetPasswordService(token, userRegisterRequest);
 	}
 
 }

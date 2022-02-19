@@ -1,0 +1,111 @@
+Prosper Team Backend URLs:
+Two main URLs:
+            http://localhost:8989/user/register -- For registration
+            http://localhost:8989/user/authentication -- For authentication
+-------------------------------------------------------------------------------------------------------------------------
+Method: POST
+URL: http://localhost:8989/user/register
+Body:
+{
+    "userName":"user_test",
+    "emailId":"test@user.com",
+    "name":"Test User",
+    "password":"passwordTest",
+    "contactNo":"123456789"
+}
+Response:
+{
+    "userId": 6,
+    "response": "User registred successfully!",
+    "userName": null,
+    "emailId": null,
+    "name": null,
+    "password": null,
+    "contactNo": null,
+    "roleId": null
+}
+Description: First time user registered. It return userId which is uniques and auto-generated
+-------------------------------------------------------------------------------------------------------------------------
+Method: POST
+URL: http://localhost:8989/user/register
+Body:
+{
+    "userName":"user_test",
+    "emailId":"test@user.com",
+    "name":"Test User",
+    "password":"passwordTest",
+    "contactNo":"123456789"
+}
+Response:
+{
+    "userId": 6,
+    "response": "Username already exists!",
+    "userName": null,
+    "emailId": null,
+    "name": null,
+    "password": null,
+    "contactNo": null,
+    "roleId": null
+}
+Description: If username already exists, user is not added and returned the userId associated with username. USERNAME and EMAIL both has to be unique to add a new user.
+            If in above body, username is changed, and emailId is same, then we will get similar body. Except response will be - "User email already exists!"
+-------------------------------------------------------------------------------------------------------------------------
+Method: POST
+URL: http://localhost:8989/user/authentication
+Body:
+{
+    "userName":"user_test",
+     "password":"passwordTest"
+}
+Response:
+{
+    "userId": 6,
+    "response": "Correct password!",
+    "userName": null,
+    "emailId": null,
+    "name": null,
+    "password": null,
+    "contactNo": null,
+    "roleId": null
+}
+Description: Successful authentication of username and password. 
+-------------------------------------------------------------------------------------------------------------------------
+Method: POST
+URL: http://localhost:8989/user/authentication
+Body:
+{
+    "userName":"user_test",
+     "password":"passwordTest1"
+}
+Response:
+{
+    "userId": -1,
+    "response": "Incorrect password!",
+    "userName": null,
+    "emailId": null,
+    "name": null,
+    "password": null,
+    "contactNo": null,
+    "roleId": null
+}
+Description: Password is incorrect
+-------------------------------------------------------------------------------------------------------------------------
+Method: POST
+URL: http://localhost:8989/user/authentication
+Body:
+{
+    "userName":"user_test1",
+     "password":"passwordTest"
+}
+Response:
+{
+    "userId": -1,
+    "response": "Username does not exists, please register.",
+    "userName": null,
+    "emailId": null,
+    "name": null,
+    "password": null,
+    "contactNo": null,
+    "roleId": null
+}
+Description: Userdoes not exist in table, please register.
