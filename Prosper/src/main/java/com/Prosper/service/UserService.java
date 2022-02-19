@@ -146,7 +146,7 @@ public class UserService {
 			userRepository.save(userEntity);
 			System.out.println("User saved");
 			try {
-				String resetPasswordLink = "http://localhost:8989/user" + "/reset_password?token=" + token;
+				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + token;
 				 sendEmail(userRegisterRequest.emailId, resetPasswordLink);
 			} catch (UnsupportedEncodingException | MessagingException e) {
 		        logger.error("Error while sending email");
@@ -189,11 +189,12 @@ public class UserService {
 		
 		if(userEntity == null) {
 			userResponse = new UserResponse();
-			userResponse.response = "Invalid Token!!";
+			userResponse.response = "Invalid or Used Token!!";
 			return userResponse;
 		}else {
 			userResponse = new UserResponse();
 			String hashPassword = hashPassword(userRegisterRequest.password);
+			userEntity.resetPasswordToken = "";
 			userEntity.password = hashPassword;
 			userRepository.save(userEntity);
 			String userIdDB = userRepository.findUserByEmailId(userEntity.emailId);
