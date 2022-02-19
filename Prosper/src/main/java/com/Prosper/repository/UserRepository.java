@@ -21,4 +21,11 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 
 	@Query("SELECT u.password FROM UserEntity u WHERE u.userName = :userName")
 	String findPasswordByUserName(@Param("userName") String userName);
+	
+//	@Query("SELECT u.userName FROM UserEntity u WHERE u.resetPasswordToken = :resetPasswordToken")
+//	String findByResetPasswordToken(@Param("resetPasswordToken") String token);
+	
+	public UserEntity findByResetPasswordToken(String token);
+	
+	public UserEntity findByUserId(long l);
 }
