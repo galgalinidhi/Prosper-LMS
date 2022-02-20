@@ -134,26 +134,26 @@ public class UserService {
 		else {
 			userResponse = new UserResponse();
 //			userEntity =  new UserEntity();
-//			String token = UUID.randomUUID().toString();
+			String token = UUID.randomUUID().toString();
 			UserEntity userEntity = userRepository.findByUserId((long)Integer.parseInt(userId));
-			userEntity.resetPasswordToken = "token";
+			userEntity.resetPasswordToken = token;
 			userRepository.save(userEntity);
 			try {
 				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + "token";
-				 sendEmail(userRegisterRequest.emailId, resetPasswordLink);
+				 sendEmail(userRegisterRequest.emailId, resetPasswordLink, token);
 				 logger.info("Email sent");
 			} catch (UnsupportedEncodingException | MessagingException e) {
 		        logger.error("Error while sending email");
 		    }
 			userResponse.userId = Integer.parseInt(userId);
-			userResponse.token = "token";
+			userResponse.token = token;
 			userResponse.response = "Email sent successfully!";
 			logger.info("Forgot password service:  email sent successfully! : userId "+userId +" email: "+userRegisterRequest.emailId);
 			return userResponse;
 		}
 	}
 	
-	public void sendEmail(String recipientEmail, String link)
+	public void sendEmail(String recipientEmail, String link, String token)
 	        throws MessagingException, UnsupportedEncodingException {
 	    MimeMessage message = mailSender.createMimeMessage();              
 	    MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -167,6 +167,8 @@ public class UserService {
 	            + "<p>You have requested to reset your password.</p>"
 	            + "<p>Click the link below to change your password:</p>"
 	            + "<p><a href=\"" + link + "\">Change my password</a></p>"
+	            + "<br>"
+	            + "<p> The Token is :"+token+" Please copy paste this token when prompted.</p>"
 	            + "<br>"
 	            + "<p>Ignore this email if you do remember your password, "
 	            + "or you have not made the request.</p>";
