@@ -74,7 +74,7 @@ public class UserService {
 			String userId = userRepository.findUserByUserName(userRequestModel.userName);
 			userResponse.userId = Integer.parseInt(userId);
 			userResponse.response = "User registred successfully!";
-			logger.info("userRegisterService : new userId: "+userId + " exists username: " + userRequestModel.userName);
+			logger.info("userRegisterService : new userId: "+userId + " username: " + userRequestModel.userName);
 			return userResponse;
 		}
 		
@@ -98,7 +98,7 @@ public class UserService {
 				String userId = userRepository.findUserByUserName(userRegisterRequest.userName);
 				userResponse.userId = Integer.parseInt(userId);
 				userResponse.response = "Correct password!";
-				logger.info("Service : POST User Correct Authentication: user_id = "+userResponse.userId +" userName: " + userRegisterRequest.userName + "Password Auth: "+authentication);
+				logger.info("Service : POST User Correct Authentication: user_id = "+userResponse.userId +" userName: " + userRegisterRequest.userName + " Password Auth: "+authentication);
 				return userResponse;
 			}
 			userResponse = new UserResponse();
@@ -121,19 +121,14 @@ public class UserService {
 	}
 
 	public UserResponse postForgotPasswordService(UserRequest userRegisterRequest) {
-		String userId = "";
-		if(userRegisterRequest.userName != null) {
-			userId = userRepository.findUserByUserName(userRegisterRequest.userName);
-		}
-		else {
-			userId = userRepository.findUserByEmailId(userRegisterRequest.emailId);
-		}
+		String userId = userRepository.findUserByEmailId(userRegisterRequest.emailId);
 		logger.info("Forgot password service : userId "+userId);
 		
 		if(userId == null) {
 			userResponse = new UserResponse();
 			userResponse.userId = -1;
-			userResponse.response = "Entered username or email does not exists! Please register";
+			userResponse.response = "Entered email does not exists! Please register";
+			logger.info("Forgot password service:  email does not exists : userId "+userId);
 			return userResponse;
 		}
 		else {
@@ -141,11 +136,8 @@ public class UserService {
 //			userEntity =  new UserEntity();
 			String token = UUID.randomUUID().toString();
 			UserEntity userEntity = userRepository.findByUserId((long)Integer.parseInt(userId));
-			System.out.println(userEntity.toString());
-//			userEntity.userId = (long) Integer.parseInt(userId);
 			userEntity.resetPasswordToken = token;
 			userRepository.save(userEntity);
-			System.out.println("User saved");
 			try {
 				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + token;
 				 sendEmail(userRegisterRequest.emailId, resetPasswordLink);
@@ -156,6 +148,7 @@ public class UserService {
 			userResponse.userId = Integer.parseInt(userId);
 			userResponse.token = token;
 			userResponse.response = "Email sent successfully!";
+			logger.info("Forgot password service:  email sent successfully! : userId "+userId +" email: "+userRegisterRequest.emailId);
 			return userResponse;
 		}
 	}
@@ -165,7 +158,7 @@ public class UserService {
 	    MimeMessage message = mailSender.createMimeMessage();              
 	    MimeMessageHelper helper = new MimeMessageHelper(message);
 	     
-	    helper.setFrom("csci.p565.prosper@gmail.com", "Software Engineering");
+	    helper.setFrom("csci.p565.prosper@gmail.com", "Prosper");
 	    helper.setTo(recipientEmail);
 	     
 	    String subject = "Here's the link to reset your password!!";
@@ -192,16 +185,18 @@ public class UserService {
 		if(userEntity == null) {
 			userResponse = new UserResponse();
 			userResponse.response = "Invalid or Used Token!!";
+			logger.info("Reset password service unsuccessful!: invalid or used token");
 			return userResponse;
 		}else {
 			userResponse = new UserResponse();
 			String hashPassword = hashPassword(userRegisterRequest.password);
-			userEntity.resetPasswordToken = "";
+			userEntity.resetPasswordToken = null;
 			userEntity.password = hashPassword;
 			userRepository.save(userEntity);
 			String userIdDB = userRepository.findUserByEmailId(userEntity.emailId);
 			userResponse.userId = Integer.parseInt(userIdDB);
 			userResponse.response = "Password Changed Successfully";
+			logger.info("Reset password service successful: username "+userEntity.userName);
 			return userResponse;
 		}
 	}

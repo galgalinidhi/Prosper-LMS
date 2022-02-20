@@ -52,7 +52,7 @@ public class UserController {
 	
 	@PostMapping("/reset_password")
 	public UserResponse postResetPassword(@Param(value = "token") String token, @RequestBody UserRequest userRegisterRequest) {
-		logger.info("controller : user/forgot/password [POST]");
+		logger.info("controller : user/reset_password [POST]");
 		return userService.postResetPasswordService(token, userRegisterRequest);
 	}
 
