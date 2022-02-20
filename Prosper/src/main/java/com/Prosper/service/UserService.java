@@ -179,7 +179,7 @@ public class UserService {
 	}
 
 	public UserResponse postResetPasswordService(String token, UserRequest userRegisterRequest) {
-		
+		logger.info("Reset password service Token:  "+token);
 		UserEntity userEntity = userRepository.findByResetPasswordToken(token);
 		
 		if(userEntity == null) {
