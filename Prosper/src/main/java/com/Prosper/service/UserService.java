@@ -134,19 +134,19 @@ public class UserService {
 		else {
 			userResponse = new UserResponse();
 //			userEntity =  new UserEntity();
-			String token = UUID.randomUUID().toString();
+//			String token = UUID.randomUUID().toString();
 			UserEntity userEntity = userRepository.findByUserId((long)Integer.parseInt(userId));
-			userEntity.resetPasswordToken = token;
+			userEntity.resetPasswordToken = "token";
 			userRepository.save(userEntity);
 			try {
-				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + token;
+				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + "token";
 				 sendEmail(userRegisterRequest.emailId, resetPasswordLink);
 				 logger.info("Email sent");
 			} catch (UnsupportedEncodingException | MessagingException e) {
 		        logger.error("Error while sending email");
 		    }
 			userResponse.userId = Integer.parseInt(userId);
-			userResponse.token = token;
+			userResponse.token = "token";
 			userResponse.response = "Email sent successfully!";
 			logger.info("Forgot password service:  email sent successfully! : userId "+userId +" email: "+userRegisterRequest.emailId);
 			return userResponse;
@@ -180,7 +180,7 @@ public class UserService {
 
 	public UserResponse postResetPasswordService(String token, UserRequest userRegisterRequest) {
 		logger.info("Reset password service Token:  "+token);
-		UserEntity userEntity = userRepository.findByResetPasswordToken(token);
+		UserEntity userEntity = userRepository.findByResetPasswordToken(userRegisterRequest.token);
 		
 		if(userEntity == null) {
 			userResponse = new UserResponse();
