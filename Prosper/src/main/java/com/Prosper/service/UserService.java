@@ -128,6 +128,7 @@ public class UserService {
 		else {
 			userId = userRepository.findUserByEmailId(userRegisterRequest.emailId);
 		}
+		logger.info("Forgot password service : userId "+userId);
 		
 		if(userId == null) {
 			userResponse = new UserResponse();
@@ -148,6 +149,7 @@ public class UserService {
 			try {
 				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + token;
 				 sendEmail(userRegisterRequest.emailId, resetPasswordLink);
+				 logger.info("Email sent");
 			} catch (UnsupportedEncodingException | MessagingException e) {
 		        logger.error("Error while sending email");
 		    }
