@@ -1,0 +1,61 @@
+
+.main-title,
+.main-para {
+    color: #f1f1f1
+}
+
+.main-title {
+    padding-top: 10rem;
+    font-size: 5rem;
+    font-family: 'Copperplate', fantasy;
+    text-transform: uppercase
+}
+
+.main-para {
+    font-size: 2.5rem;
+    text-Transform: capitalize
+}
+
+#signup-btn span {
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+#signup-btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#signup-btn:hover span {
+  padding-right: 25px;
+}
+
+#signup-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.primary-button {
+    margin-top: 5rem;
+    margin-right: 1rem;
+    padding: .6rem;
+    width: 10rem;
+    background: #053f4d;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: all .5s;
+    cursor: pointer;
+    text-transform: capitalize
+}
+.primary-button:active {
+    background-color: #418843;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
