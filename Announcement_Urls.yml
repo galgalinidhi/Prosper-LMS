@@ -1,0 +1,55 @@
+Announcement URLs:
+
+METHOD: POST
+URL: localhost:8989/announcement/add
+Request Body:
+{
+    "announcementTitle" : "Hello",
+    "announcementDescription" : "Welcome to the class!",
+    "courseTitle" : "Software Engineering"
+}
+Response:
+{
+    "announcementId": [
+        "50"
+    ],
+    "announcementTitle": null,
+    "announcementDescription": null,
+    "courseTitle": null
+}
+Description: Returns list of announcementId added. There is no validation so the data will be dumped as is.
+--------------------------------------------------------------------------------------------------------------------------------
+METHOD: GET
+URL: localhost:8989/announcement/get
+Request Body:
+{
+    "courseTitle" : "Software Engineering"
+}
+Response:
+[
+    {
+        "announcementId": 35,
+        "announcementTitle": "Hello",
+        "announcementDescription": "Welcome to the class!",
+        "courseTitle": "Software Engineering"
+    },
+    {
+        "announcementId": 36,
+        "announcementTitle": "Hello",
+        "announcementDescription": "Welcome to the class!",
+        "courseTitle": "Software Engineering"
+    },
+    {
+        "announcementId": 37,
+        "announcementTitle": "Hello",
+        "announcementDescription": "Welcome to the class!",
+        "courseTitle": "Software Engineering"
+    },
+    {
+        "announcementId": 38,
+        "announcementTitle": "Hello",
+        "announcementDescription": "Welcome to the class!",
+        "courseTitle": "Software Engineering"
+    }
+]
+Description: List of all announcements by the courseTitle
