@@ -16,5 +16,7 @@ public class UserRequest {
 	 public String contactNo;
 
 	 public String roleId;
+	 
+	 public String token;
 
 }
