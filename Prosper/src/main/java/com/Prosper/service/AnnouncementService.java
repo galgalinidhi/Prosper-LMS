@@ -46,9 +46,9 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 		return announcementResponse;
 	}
 
-	public List<AnnouncementEntity> getAnnouncementService(AnnouncementRequest announcementRequest) {
-		List<AnnouncementEntity> announcements = announcementRepository.findByCourseTitle(announcementRequest.courseTitle);
-		logger.info("Announcement  GET Service: courseTitle: "+announcementRequest.courseTitle);
+	public List<AnnouncementEntity> getAnnouncementService(String courseTitle) {
+		List<AnnouncementEntity> announcements = announcementRepository.findByCourseTitle(courseTitle);
+		logger.info("Announcement  GET Service: courseTitle: "+courseTitle);
 		return announcements;
 	}
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Prosper.entity.AnnouncementEntity;
@@ -41,9 +42,9 @@ public class AnnouncementController {
 	}
 	
 	@GetMapping("/get")
-	public List<AnnouncementEntity> getAnnouncementController(@RequestBody AnnouncementRequest announcementRequest) {
+	public List<AnnouncementEntity> getAnnouncementController(@RequestParam String courseTitle) {
 		logger.info("controller : announcement/get [POST]");
-		return announcementService.getAnnouncementService(announcementRequest);
+		return announcementService.getAnnouncementService(courseTitle);
 	}
 
 }
