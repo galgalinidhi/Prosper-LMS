@@ -1,8 +1,11 @@
 package com.Prosper.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.entity.CourseEntity;
 import com.Prosper.entity.UserEntity;
 import com.Prosper.repository.CourseRepository;
@@ -26,7 +29,7 @@ public class CourseService {
 	private CourseResponse courseResponse = new CourseResponse();
 	
 	public CourseResponse courseRegisterService(CourseRequest courseRequestModel) {
-		CourseEntity courseId = courseRepository.findByCourseName(courseRequestModel.courseName);
+		CourseEntity courseId = courseRepository.findByCourseTitle(courseRequestModel.courseTitle);
 		CourseEntity courseDesc = courseRepository.findByCourseDescription(courseRequestModel.courseDescripton);
 		if(courseId != null && courseDesc != null) {
 			courseResponse = new CourseResponse();
@@ -37,18 +40,24 @@ public class CourseService {
 			courseResponse = new CourseResponse();
 			courseEntity =  new CourseEntity();
 			
-			courseEntity.courseName = courseRequestModel.courseName;
+			courseEntity.courseTitle = courseRequestModel.courseTitle;
 			courseEntity.courseDescription = courseRequestModel.courseDescripton;
 			
 			courseRepository.save(courseEntity);
 			
-			CourseEntity courseIdDb = courseRepository.findByCourseName(courseRequestModel.courseName);
+			CourseEntity courseIdDb = courseRepository.findByCourseTitle(courseRequestModel.courseTitle);
 			courseResponse.courseId = courseIdDb.courseId.intValue();
 			courseResponse.response = "Course registred successfully!";
 			
 			return courseResponse;
 		}
 	
+	}
+
+	public List<String> getAssignment() {
+		List<String> announcements = courseRepository.findCourseTitle();
+		
+		return announcements;
 	}
 	
 	

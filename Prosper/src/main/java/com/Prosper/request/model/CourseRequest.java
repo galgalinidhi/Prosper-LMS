@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class CourseRequest {
 
-	public String courseName;
+	public String courseTitle;
 	public String courseDescripton;
 
 }
