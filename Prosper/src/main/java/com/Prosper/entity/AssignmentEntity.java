@@ -9,14 +9,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public class CourseEntity {
+public class AssignmentEntity {
 	@Id
 	 @GeneratedValue
-	 public Long courseId;
+	 public Long assignmentId;
 	
 	@Getter @Setter(AccessLevel.PACKAGE)
-	 public String courseTitle;
+	 public String assignmentTitle;
 	
 	@Getter @Setter(AccessLevel.PACKAGE)
-	 public String courseDescription;
+	 public String assignmentDescription;
+	
+	@Getter @Setter(AccessLevel.PACKAGE)
+	public String courseTitle;
 }
