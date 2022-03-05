@@ -3,6 +3,7 @@ package com.Prosper.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -31,8 +32,15 @@ public class UserEntity {
 	 public String contactNo;
 
 	 @Getter @Setter(AccessLevel.PACKAGE)
-	 public String roleId;
+	 public int roleId;
 	 
 	 @Getter @Setter(AccessLevel.PACKAGE)
 	 public String resetPasswordToken;
+	 
+	 @PrePersist
+	    void preInsert() {
+	        if (this.roleId == 0) {
+	            this.roleId = 1;
+	        }
+	 }
 }
