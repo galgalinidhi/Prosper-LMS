@@ -10,6 +10,12 @@ import Coursedetails from './components/course_details';
 import EventsCalendar from './components/calendar';
 import PostAnnounce from './components/postAnnouncements';
 import PostAssign from './components/post_assignments';
+import SE from './components/SE';
+//import Gettry from './components/getAnnounce';
+import InstDashboard from './components/Instructor_dasboard';
+import Getpost from './components/getAnnounce';
+import GetAssign from './components/view_assignments';
+
 
 function App() {
   return (
@@ -21,11 +27,16 @@ function App() {
       <Route exact path = "/PasswordReset" element = {<PasswordReset/>}/>
       <Route exact path = "/changepassword" element = {<Change_password/>}/>
       <Route exact path = "/student_dashboard" element = {<SD/>}/>
+      <Route exact path = "/instructor_dashboard" element = {<InstDashboard/>}/>
       <Route exact path = "/coursedetails" element = {<Coursedetails/>}/>
       <Route exact path = "/calendar" element = {<EventsCalendar/>}/>
       <Route exact path = "/announcements" element = {<PostAnnounce/>}/>
       <Route exact path = "/assignments" element = {<PostAssign/>}/>
+      <Route exact path = "/getassignments" element = {<GetAssign/>}/>
       
+      <Route exact path = "/SE" element = {<SE/>}/>
+      
+      <Route exact path = "/getannouncements" element = {<Getpost/>}/>
     </Routes>
     </BrowserRouter>
   );

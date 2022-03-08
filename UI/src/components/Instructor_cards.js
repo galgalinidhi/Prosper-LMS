@@ -13,9 +13,6 @@ return(
     <div className='card-body text-dark'>
         <h4 className='card-title'>{props.title}</h4>
         <br/>
-        {/* <p className='card-text text-secondary'>
-       
-        </p> */}
         <a href= {props.url} className='btn btn-outline-success'>View Course Details</a>
     </div>
 </div>
@@ -41,22 +38,22 @@ async function getcode(){
         ('.card-title').eq(i).html(data[i].title)
     }
 }
-export default class Grid extends Component{
+export default class IGrid extends Component{
     render(){
         return(
             <div className='container-fluid d-flex justify-content-center'>
             <div className='row'>
               <div className='col-md-4'>
-                <Card imgsrc={img1} title= "Software Engineering"url='/SE'/>
+                <Card imgsrc={img1} title= "Software Engineering"url='/I_SE'/>
               </div>
-              <div className='col-md-4'>
+              {/* <div className='col-md-4'>
               <Card imgsrc={img2} title= "Computer Networks"url='/CN'/>
               </div>
               <div className='col-md-4'>
               <Card imgsrc={img3} title= "Applied Algorithms"url='/AA'/>
-              </div>
+              </div> */}
             </div>
             </div>
         )
-    } 
+    }
 }

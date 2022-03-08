@@ -4,7 +4,7 @@ body{
 }
 .card{
   
-    height: 40vh;
+    height: 50vh;
     margin-top: 5rem;
     width: 20rem;
 }
@@ -13,12 +13,17 @@ body{
 
 }
 .card-text{
+    
     font-size:  9rem ;
     padding: 0.4rem 1.9rem;
+
 }
 .overflow
 {
     height: 20vh;
    
     width: 20rem;
+}
+.card-img-top{
+    height: 25vh;
 }

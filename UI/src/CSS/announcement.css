@@ -8,6 +8,7 @@ h2 {
 .post_form {
     position: relative;
     float: left;
+    margin-top: 6rem;
     background: #f3f3f3;
     border: 3px solid #ddd;
     border-radius: 10px;
@@ -29,7 +30,7 @@ form label {
 }
 
 input {
-    width: 15rem;
+    width: 25rem;
     padding: .3rem;
     border-radius: 5px;
     outline: none;
@@ -46,12 +47,21 @@ input {
     border-radius: 3px;
 }
 
-#sub_btn:hover {
+.post-btn:hover {
     background: #333;
     transition: all .5s
 }
 
-footer p {
-    margin: 0;
-    font-size: .9rem
-}
+
+.post-btn{
+    background: #0b776e;
+    color: white;
+    border-style: outset;
+    border-color: #062521;
+    height: 50px;
+    width: 100px;
+    font: bold15px arial,sans-serif;
+    text-shadow: none;
+    }
+
+    

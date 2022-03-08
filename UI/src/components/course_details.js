@@ -89,7 +89,9 @@ export default function Coursedetails () {
        
       </nav>
       </IconContext.Provider>
-    
+    <div>
+    <h1 className="main-title text-center"></h1>
+    </div>
       </>
       
 

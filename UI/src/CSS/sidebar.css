@@ -5,6 +5,14 @@
     justify-content: start;
     align-items: center;
 }
+.navbar-instructor{
+    background-color: #167880 ;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
 
 .menubars {
     margin-left: 2rem ;
@@ -17,16 +25,31 @@
      width: 250px;
      height: 100vh;
      display: flex;
-     justify-content: center;
+     justify-content: center; 
      position: fixed;
      top: 0;
      left: -100%;   
      transition: 850ms;
  }
+ .nav-menu-instructor{
+    background-color: #167880;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    position: fixed;
+    top: 0;
+    left: -100%;   
+    transition: 850ms;
+}
  .nav-menu.active{
      left: 0;
      transition: 350ms;
  }
+ .nav-menu-instructor.active{
+    left: 0;
+    transition: 350ms;
+}
  .nav-text{
  display: flex;
  justify-content: start;
@@ -61,4 +84,9 @@
      display: flex;
      justify-content: start;
      align-items: center;
+ }
+ .table{
+padding-left: 17rem;
+padding-right: 10rem;
+
  }

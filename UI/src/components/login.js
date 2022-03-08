@@ -65,7 +65,7 @@ export default function Login() {
         <div className="text-center m-5-auto">
             <h2>Login</h2>
             <div className="col-sm-6 offset-sm-3">
-                <form action='/student_dashboard'>
+                 <form action='/student_dashboard'> 
                 <label>Username</label><br/>
                 <input type ="text" placeholder = "username"
                 onChange={(e)=>setUserName(e.target.value)} 

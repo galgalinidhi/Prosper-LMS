@@ -4,14 +4,27 @@ import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
+import * as Gicons from "react-icons/gi"
 
-import Grid from './Course_cards'
+import IGrid from './Instructor_cards'
 import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
 const sidemenu =[
   {
     title: 'Dashboard',
-    path: '/student_dashboard',
+    path: '/instructor_dashboard',
     icon: <faicons.FaTh/>,
+    cName: 'nav-text',
+  },
+  {
+    title: 'Announcements',
+    path: '/announcements',
+    icon: <faicons.FaBullhorn/>,
+    cName: 'nav-text',
+  },
+  {
+    title: 'Assignments',
+    path: '/assignments',
+    icon: <Gicons.GiSpellBook/>,
     cName: 'nav-text',
   },
   {
@@ -35,7 +48,7 @@ const sidemenu =[
 ]
 
 
-export default function SD () {
+export default function InstDashboard () {
   const[sidebar,setSidebar] = useState(false)
   const showSidebar =() => setSidebar(!sidebar)
     return (
@@ -43,12 +56,12 @@ export default function SD () {
       <IconContext.Provider value={{color:'#fff'}}>
 
      
-      <div className= 'navbar'>
+      <div className= 'navbar-instructor'>
         <Link to= "#" className='menubars'>
           <faicons.FaBars onClick={showSidebar}/>
         </Link>
       </div>
-      <nav className={sidebar ? 'nav-menu active': 'nav-menu'}>
+      <nav className={sidebar ? 'nav-menu-instructor active': 'nav-menu-instructor'}>
         <ul className='nav-menu-items'onClick={showSidebar}>
           <li className='nav-toggle'>
             <Link to ="#" className='menubars'>
@@ -59,9 +72,8 @@ export default function SD () {
             return(
               <li key ={index} className={item.cName}>
                 <Link to ={item.path}>
-                  {item.icon} 
-                  <span>&ensp;{item.title}</span>
-                  
+                  {item.icon}
+                  <span>{item.title}</span>
                 </Link>
               </li>
             )
@@ -71,7 +83,7 @@ export default function SD () {
       </nav>
       </IconContext.Provider>
       <div>
-        <Grid/>
+        <IGrid/>
       </div>
       </>
       

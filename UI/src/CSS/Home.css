@@ -3,7 +3,18 @@
 .main-para {
     color: #f1f1f1
 }
+.course-title{
+    color:#053f4d;
+    padding-top: 5rem;
+    font-size: 2rem;
+}
+.course-description{
+    color: #000000;
+    padding-left: 20rem;
+    padding-right: 15rem;
 
+
+}
 .main-title {
     padding-top: 10rem;
     font-size: 5rem;

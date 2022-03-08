@@ -91,7 +91,7 @@ export default function Register() {
                 </p>
                
 
-               
+        +       
                 <p>
                     <button id="sub_btn" type="submit" onClick={register}>Register</button>
                 </p>

@@ -45,16 +45,16 @@ const sidemenu =[
 
 const columns = [
     {
-        title : 'Assignment Title',
-        dataIndex : 'assignmentTitle',
-        key : 'assignmentTitle'
+        title : 'Announcement Title',
+        dataIndex : 'announcementTitle',
+        key : 'announcementTitle'
     },
 
     {
     
         title : 'Description',
-        dataIndex : 'assignmentDescription',
-        key : 'assignmentDescription'
+        dataIndex : 'announcementDescription',
+        key : 'announcementDescription'
     },
 
     {
@@ -68,7 +68,7 @@ const columns = [
 
 ]
 
-export default function GetAssign () {
+export default function Getpost () {
   var sd = SD();
   var data =[];
   console.log(sd.course_title);
@@ -83,7 +83,7 @@ const [assignmentList, setAssignmentList] = useState([]);
 
 async function getAssignment(e){
     e.preventDefault();
-  fetch('http://localhost:8989/assignment/get?courseTitle=Software Engineering')
+  fetch('http://localhost:8989/announcement/get?courseTitle=Software Engineering')
       .then(async response => {
           data = await response.json();
   setAssignmentList(data)
@@ -153,7 +153,7 @@ async function getAssignment(e){
               </p> */}
 
                <p>
-                  <button id="sub_btn" type="submit">Get Assignments</button>
+                  <button id="sub_btn" type="submit">Get Announcements</button>
               </p> 
  </form> 
 
