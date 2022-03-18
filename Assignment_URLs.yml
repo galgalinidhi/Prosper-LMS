@@ -1,0 +1,51 @@
+Assignment_URLS:
+METHOD: POST
+URL: localhost:8989/assignment/add
+Request Body:
+{
+    "assignmentTitle" : "Assignment 4",
+    "assignmentDescripton" : "Introduction 4",
+    "courseTitle" : "Software Engineering"
+}
+Response:
+{
+    "assignmentId": 54,
+    "assignmentTitle": null,
+    "assignmentDescripton": null,
+    "response": "Assignment successfully registered!"
+}
+Descrition: This service is used to add an assignmnet. There is no validation, all the data will be persisted as is. 
+            There is a typo in the word description. Kindly use assignmentDescripton for this sprint. we can fix it later.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+METHOD: GET
+URL: localhost:8989/assignment/get?courseTitle=Software Engineering
+Body: NOT REQUIRED as it is a GET SERVICE courseTitle is IMPORTANT
+Response:
+[
+    {
+        "assignmentId": 51,
+        "assignmentTitle": "Assignment 1",
+        "assignmentDescription": null,
+        "courseTitle": "Software Engineering"
+    },
+    {
+        "assignmentId": 52,
+        "assignmentTitle": "Assignment 2",
+        "assignmentDescription": null,
+        "courseTitle": "Software Engineering"
+    },
+    {
+        "assignmentId": 53,
+        "assignmentTitle": "Assignment 3",
+        "assignmentDescription": null,
+        "courseTitle": "Software Engineering"
+    },
+    {
+        "assignmentId": 54,
+        "assignmentTitle": "Assignment 4",
+        "assignmentDescription": "Introduction 4",
+        "courseTitle": "Software Engineering"
+    }
+]
+Descrition: It will return list of all assignments by the courseTitle .

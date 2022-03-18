@@ -10,8 +10,8 @@ import com.Prosper.entity.AnnouncementEntity;
 
 public interface AnnouncementRepository extends JpaRepository<AnnouncementEntity, Integer> {
 	
-	@Query("SELECT max(a.announcementId) FROM AnnouncementEntity a WHERE a.announcementTitle = announcementTitle")
-	List<String> findAnnouncementIdByAnnouncementTitle(@Param("announcementTitle") String announcementTitle);
+	@Query("SELECT a.announcementId FROM AnnouncementEntity a WHERE a.announcementTitle = :announcementTitle")
+	Long findAnnouncementIdByAnnouncementTitle(@Param("announcementTitle") String announcementTitle);
 
 
 	public List<AnnouncementEntity> findByCourseTitle(String courseTitle);

@@ -32,18 +32,28 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 	private AnnouncementResponse announcementResponse = new AnnouncementResponse();
 	
 	public AnnouncementResponse addAnnouncement(AnnouncementRequest announcementRequest) {
-
-		announcementEntity = new  AnnouncementEntity();
-		announcementEntity.courseTitle = announcementRequest.courseTitle;
-		announcementEntity.announcementTitle = announcementRequest.announcementTitle;
-		announcementEntity.announcementDescription = announcementRequest.announcementDescription;
-		
-		announcementRepository.save(announcementEntity);
-		
-		List<String> announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
-		announcementResponse.announcementId = announcementIdDB;
-		logger.info("Announcement Service: announcementIdDB: "+announcementIdDB + " announcementTitle "+announcementRequest.announcementTitle);
-		return announcementResponse;
+		Long announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
+		if (announcementIdDB != null) {
+			announcementResponse.response = "Announcement title already exists";
+			logger.info("Announcement Exists (Service): announcementIdDB: "+announcementIdDB + " announcementTitle "+announcementRequest.announcementTitle);
+			return announcementResponse;
+		}
+		else {
+			// To-Do :Add timestamp and approval
+			announcementResponse = new AnnouncementResponse();
+			announcementEntity = new  AnnouncementEntity();
+			announcementEntity.courseTitle = announcementRequest.courseTitle;
+			announcementEntity.announcementTitle = announcementRequest.announcementTitle;
+			announcementEntity.announcementDescription = announcementRequest.announcementDescription;
+			
+			announcementRepository.save(announcementEntity);
+			
+			announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
+			announcementResponse.announcementId = announcementIdDB;
+			announcementResponse.response = "Announcement saved successfully!";
+			logger.info("Announcement Service: announcementIdDB: "+announcementIdDB + " announcementTitle "+announcementRequest.announcementTitle);
+			return announcementResponse;
+		}
 	}
 
 	public List<AnnouncementEntity> getAnnouncementService(String courseTitle) {

@@ -1,5 +1,15 @@
 package com.Prosper.service;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.UUID;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -13,17 +23,6 @@ import com.Prosper.response.model.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
-import org.mindrot.jbcrypt.BCrypt;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.UnsupportedEncodingException;
-import java.util.UUID;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -144,6 +143,10 @@ public class UserService {
 				 logger.info("Email sent");
 			} catch (UnsupportedEncodingException | MessagingException e) {
 		        logger.error("Error while sending email");
+		        userResponse = new UserResponse();
+				userResponse.userId = -1;
+				userResponse.response = "Error while sending email";
+				return userResponse;
 		    }
 			userResponse.userId = Integer.parseInt(userId);
 			userResponse.token = token;
@@ -180,8 +183,8 @@ public class UserService {
 	    mailSender.send(message);
 	}
 
-	public UserResponse postResetPasswordService(String token, UserRequest userRegisterRequest) {
-		logger.info("Reset password service Token:  "+token);
+	public UserResponse postResetPasswordService(UserRequest userRegisterRequest) {
+		logger.info("Reset password service Token:  "+userRegisterRequest.token);
 		UserEntity userEntity = userRepository.findByResetPasswordToken(userRegisterRequest.token);
 		
 		if(userEntity == null) {
@@ -200,6 +203,53 @@ public class UserService {
 			userResponse.response = "Password Changed Successfully";
 			logger.info("Reset password service successful: username "+userEntity.userName);
 			return userResponse;
+		}
+	}
+
+	public List<String> getAllStudentService() {
+		List<String> listUsers = userRepository.findByRoleId(1);
+		return listUsers;
+	}
+
+	public List<String> getAllInstructorService() {
+		List<String> listUsers = userRepository.findByRoleId(2);
+		return listUsers;
+	}
+
+	public List<String> getAllUserService() {
+		List<String> studentUsers = userRepository.findByRoleId(1);
+		List<String> instructorUsers = userRepository.findByRoleId(2);
+		studentUsers.addAll(instructorUsers);
+		return studentUsers;
+	}
+
+	public String createInstructorService(String userName) {
+		UserEntity user = userRepository.findByUserName(userName);
+		logger.info("Create Instructor Service: userName: "+userName);
+		if(user == null) {
+			return "Username invalid!!";
+		} else {
+			user.roleId = 2;
+			userRepository.save(user);
+			return "Instructor created successfully";
+		}
+	}
+	
+	public void createAdmin() {
+		String userIdUserName = userRepository.findUserByUserName("prosper_admin");
+		if( userIdUserName == null) {
+			userEntity = new UserEntity();
+			userEntity.name = "Admin";
+			userEntity.contactNo = "123123123";
+			userEntity.userName = "prosper_admin";
+			String hashPassword = hashPassword("prosper_admin@123");
+			userEntity.password = hashPassword;
+			userEntity.roleId = 3;
+			userEntity.emailId = "csci.p565.prosper@gmail.com";
+			userRepository.save(userEntity);
+			logger.info( "Admin saved successfully");
+		}else {
+			logger.info("Admin already exists");
 		}
 	}
 

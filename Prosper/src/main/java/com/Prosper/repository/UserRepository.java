@@ -1,5 +1,7 @@
 package com.Prosper.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -25,7 +27,13 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 //	@Query("SELECT u.userName FROM UserEntity u WHERE u.resetPasswordToken = :resetPasswordToken")
 //	String findByResetPasswordToken(@Param("resetPasswordToken") String token);
 	
+	@Query("SELECT u.userName FROM UserEntity u WHERE u.roleId = :roleId")
+	public List<String> findByRoleId(int roleId);
+	
 	public UserEntity findByResetPasswordToken(String token);
 	
 	public UserEntity findByUserId(long l);
+	
+	public UserEntity findByUserName(String userName);
+
 }

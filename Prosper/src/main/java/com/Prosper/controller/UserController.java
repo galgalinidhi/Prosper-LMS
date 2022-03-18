@@ -1,12 +1,17 @@
 package com.Prosper.controller;
 
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,27 +38,80 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/register")
-	public UserResponse userData(@RequestBody UserRequest userRequestModel) {
+	public ResponseEntity<UserResponse> userData(@RequestBody UserRequest userRequestModel) {
 		logger.info("controller : user/register [POST]");
-		return userService.userRegisterService(userRequestModel); 
+		UserResponse userResponse = userService.userRegisterService(userRequestModel);
+		if((userResponse.response == "Username already exists!")||(userResponse.response == "User email already exists!")) {
+			return new ResponseEntity<>(userResponse,  HttpStatus.CONFLICT); // response code = 409
+		} else {
+			return new ResponseEntity<>(userResponse,  HttpStatus.OK); 
+		}
 	}
 	
 	@PostMapping("/authentication")
-	public UserResponse postUserAuthentication(@RequestBody UserRequest userRegisterRequest) {
+	public ResponseEntity<UserResponse> postUserAuthentication(@RequestBody UserRequest userRegisterRequest) {
 		logger.info("controller : user/authentication [POST]");
-		return userService.postUserAuthenticationService(userRegisterRequest);
+		UserResponse userResponse = userService.postUserAuthenticationService(userRegisterRequest);
+		if((userResponse.response == "Username does not exists, please register.") || (userResponse.response == "Incorrect password!")) {
+			return new ResponseEntity<>(userResponse, HttpStatus.UNAUTHORIZED); 
+		} else {
+			return new ResponseEntity<>(userResponse, HttpStatus.OK); // HTTP Status = 200
+		}
 	}
 	
-	@PostMapping("/forgot/password")
-	public UserResponse postForgotPassword(@RequestBody UserRequest userRegisterRequest) {
-		logger.info("controller : user/forgot/password [POST]");
-		return userService.postForgotPasswordService(userRegisterRequest);
+	@PutMapping("/forgot/password")
+	public ResponseEntity<UserResponse> postForgotPassword(@RequestBody UserRequest userRegisterRequest) {
+		logger.info("controller : user/forgot/password [PUT]");
+		UserResponse userResponse =  userService.postForgotPasswordService(userRegisterRequest);
+		if(userResponse.response == "Entered email does not exists! Please register") {
+			return new ResponseEntity<>(userResponse, HttpStatus.UNAUTHORIZED);
+		} else if (userResponse.response == "Error while sending email") {
+			return new ResponseEntity<>(userResponse, HttpStatus.SERVICE_UNAVAILABLE);  // HTTP Response: 503
+		} else {
+			return new ResponseEntity<>(userResponse, HttpStatus.OK); 
+		}
 	}
 	
-	@PostMapping("/reset_password")
-	public UserResponse postResetPassword(@Param(value = "token") String token, @RequestBody UserRequest userRegisterRequest) {
-		logger.info("controller : user/reset_password [POST]");
-		return userService.postResetPasswordService(token, userRegisterRequest);
+	@PutMapping("/reset_password")
+	public ResponseEntity<UserResponse> postResetPassword(@RequestBody UserRequest userRegisterRequest) {
+		logger.info("controller : user/reset_password [PUT]");
+		UserResponse userResponse = userService.postResetPasswordService(userRegisterRequest);
+		if(userResponse.response == "Invalid or Used Token!!") {
+			return new ResponseEntity<>(userResponse, HttpStatus.UNAUTHORIZED);
+		} else {
+			return new ResponseEntity<>(userResponse, HttpStatus.OK); // HTTP Status = 200
+		}
 	}
-
+	
+	@GetMapping("/student")
+	public ResponseEntity<List<String>> getAllStudent(){
+		logger.info("controller : user/student [GET]");
+		List<String> userResponse = userService.getAllStudentService();
+		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+	}
+	
+	@GetMapping("/instructor")
+	public ResponseEntity<List<String>> getAllInstructor(){
+		logger.info("controller : user/instructor [GET]");
+		List<String> userResponse = userService.getAllInstructorService();
+		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<String>> getAllUser(){
+		logger.info("controller : user/all [GET]");
+		List<String> userResponse = userService.getAllUserService();
+		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+	}
+	
+	@PutMapping("/create_instructor")
+	public ResponseEntity<String> createInstructor(@RequestBody UserRequest userRequest){
+		logger.info("controller : user/create_instructor [PUT]");
+		String userResponse = userService.createInstructorService(userRequest.userName);
+		if(userResponse == "Username invalid!!") {
+			return new ResponseEntity<>(userResponse, HttpStatus.BAD_REQUEST);
+		}else {
+		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+		}
+	}
 }
