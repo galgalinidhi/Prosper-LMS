@@ -6,6 +6,7 @@ com\Prosper\service\CourseService.class
 com\Prosper\entity\CourseEntity.class
 com\Prosper\repository\AnnouncementRepository.class
 com\Prosper\response\model\UserResponse.class
+com\Prosper\service\RoleService.class
 com\Prosper\request\model\UserRequest.class
 com\Prosper\entity\AnnouncementEntity.class
 com\Prosper\entity\UserEntity.class

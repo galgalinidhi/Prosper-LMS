@@ -14,5 +14,7 @@ public interface AnnouncementRepository extends JpaRepository<AnnouncementEntity
 	Long findAnnouncementIdByAnnouncementTitle(@Param("announcementTitle") String announcementTitle);
 
 
-	public List<AnnouncementEntity> findByCourseTitle(String courseTitle);
+	public List<AnnouncementEntity> findByCourseTitleAndIsApproved(String courseTitle, int isApproved);
+	
+	public AnnouncementEntity findByAnnouncementTitle(String AnnouncementTitle);
 }

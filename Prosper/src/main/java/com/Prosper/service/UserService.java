@@ -97,6 +97,8 @@ public class UserService {
 				String userId = userRepository.findUserByUserName(userRegisterRequest.userName);
 				userResponse.userId = Integer.parseInt(userId);
 				userResponse.response = "Correct password!";
+				UserEntity userEntity = userRepository.findByUserName(userRegisterRequest.userName);
+				userResponse.roleId = userEntity.roleId;
 				logger.info("Service : POST User Correct Authentication: user_id = "+userResponse.userId +" userName: " + userRegisterRequest.userName + " Password Auth: "+authentication);
 				return userResponse;
 			}

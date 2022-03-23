@@ -39,12 +39,13 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 			return announcementResponse;
 		}
 		else {
-			// To-Do :Add timestamp and approval
+			// To-Do :Add timestamp 
 			announcementResponse = new AnnouncementResponse();
 			announcementEntity = new  AnnouncementEntity();
 			announcementEntity.courseTitle = announcementRequest.courseTitle;
 			announcementEntity.announcementTitle = announcementRequest.announcementTitle;
 			announcementEntity.announcementDescription = announcementRequest.announcementDescription;
+			announcementEntity.isApproved = 0;
 			
 			announcementRepository.save(announcementEntity);
 			
@@ -56,10 +57,34 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 		}
 	}
 
-	public List<AnnouncementEntity> getAnnouncementService(String courseTitle) {
-		List<AnnouncementEntity> announcements = announcementRepository.findByCourseTitle(courseTitle);
-		logger.info("Announcement  GET Service: courseTitle: "+courseTitle);
+	public List<AnnouncementEntity> getApprovedAnnouncementService(String courseTitle) {
+		List<AnnouncementEntity> announcements = announcementRepository.findByCourseTitleAndIsApproved(courseTitle, 1);
+		logger.info("Announcement Approved GET Service: courseTitle: "+courseTitle);
 		return announcements;
+	}
+	
+	public List<AnnouncementEntity> getUnapprovedAnnouncementService(String courseTitle) {
+		List<AnnouncementEntity> announcements = announcementRepository.findByCourseTitleAndIsApproved(courseTitle, 0);
+		logger.info("Announcement Unapproved GET Service: courseTitle: "+courseTitle);
+		return announcements;
+	}
+
+	public String approveAnnouncement(String announcementTitle) {
+		AnnouncementEntity announcementEntity = announcementRepository.findByAnnouncementTitle(announcementTitle);
+		if (announcementEntity == null) {
+			announcementResponse = new AnnouncementResponse();
+			announcementResponse.response = "Announcement title not found";
+			logger.info("Announcement Title Not Found : "+announcementTitle);
+			return announcementResponse.response;
+		} else {
+			announcementResponse = new AnnouncementResponse();
+			announcementEntity.isApproved = 1;
+			announcementRepository.save(announcementEntity);
+			logger.info("Announcement Title updated : "+announcementTitle);
+			announcementResponse.response = "Announcement approved successfully";
+			return announcementResponse.response;
+		}
+		
 	}
 	
 

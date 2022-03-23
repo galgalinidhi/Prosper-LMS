@@ -35,5 +35,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	public UserEntity findByUserId(long l);
 	
 	public UserEntity findByUserName(String userName);
+	
+//	public List<UserEntity> findByRoleId(int roleId);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,10 +49,27 @@ public class AnnouncementController {
 		}
 	}
 	
-	@GetMapping("/get")
-	public ResponseEntity<List<AnnouncementEntity>> getAnnouncementController(@RequestParam String courseTitle) {
-		logger.info("controller : announcement/get [POST]");
-		return new ResponseEntity<>(announcementService.getAnnouncementService(courseTitle), HttpStatus.OK);
+	@GetMapping("/get/approved")
+	public ResponseEntity<List<AnnouncementEntity>> getApprovedAnnouncementController(@RequestParam String courseTitle) {
+		logger.info("controller : announcement/get Approved [POST]");
+		return new ResponseEntity<>(announcementService.getApprovedAnnouncementService(courseTitle), HttpStatus.OK);
+	}
+	
+	@GetMapping("/get/unapproved")
+	public ResponseEntity<List<AnnouncementEntity>> getUnapprovedAnnouncementController(@RequestParam String courseTitle) {
+		logger.info("controller : announcement/get Unapproved [POST]");
+		return new ResponseEntity<>(announcementService.getUnapprovedAnnouncementService(courseTitle), HttpStatus.OK);
+	}
+	
+	@PutMapping("/approve/announcement")
+	public ResponseEntity<String> AnnouncementApprove(@RequestBody AnnouncementRequest announcementRequest){
+		logger.info("controller : /approve/announcement AnnouncementApprove [POST]");
+		String announcementResponse = announcementService.approveAnnouncement(announcementRequest.announcementTitle);
+		if(announcementResponse == "Announcement title not found") {
+			return new ResponseEntity<>(announcementResponse, HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(announcementResponse, HttpStatus.OK);
+		}
 	}
 
 }

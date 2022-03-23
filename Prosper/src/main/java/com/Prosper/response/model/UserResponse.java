@@ -19,7 +19,7 @@ public class UserResponse {
 	 
 	 public String contactNo;
 
-	 public String roleId;
+	 public int roleId;
 	 
 	 public String token;
 

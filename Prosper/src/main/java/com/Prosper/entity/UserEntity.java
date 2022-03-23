@@ -38,9 +38,9 @@ public class UserEntity {
 	 public String resetPasswordToken;
 	 
 	 @PrePersist
-	    void preInsert() {
-	        if (this.roleId == 0) {
-	            this.roleId = 1;
-	        }
+	 void preInsert() {
+	    if (this.roleId == 0) {
+	        this.roleId = 1;
+	    }
 	 }
 }
