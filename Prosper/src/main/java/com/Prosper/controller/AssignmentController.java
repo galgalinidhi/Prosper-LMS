@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Prosper.entity.AssignmentEntity;
+import com.Prosper.request.model.AssignmentRequest;
 import com.Prosper.request.model.CourseRequest;
+import com.Prosper.response.model.AssignmentResponse;
 import com.Prosper.response.model.CourseResponse;
+import com.Prosper.service.AssignmentService;
 import com.Prosper.service.CourseService;
 
 import lombok.AllArgsConstructor;
@@ -25,23 +28,23 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RestController
 @CrossOrigin
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/assignment")
+public class AssignmentController {
 	
 	@Autowired
-	private CourseService courseService;
+	private AssignmentService assignmentService;
 	
 	@PostMapping("/add")
-	public CourseResponse courseData(@RequestBody CourseRequest courseRequestModel) {
+	public AssignmentResponse courseData(@RequestBody AssignmentRequest courseRequestModel) {
 		
-		return courseService.courseRegisterService(courseRequestModel); 
+		return assignmentService.courseRegisterService(courseRequestModel); 
 	}
 	
 	@GetMapping("/get")
-	public List<String> getcourseData() {
+	public List<AssignmentEntity> getassignmentData(@RequestParam String courseTitle) {
 		
-		return courseService.getAssignment();
+		return assignmentService.getAssignment(courseTitle);
 	}
-
 	
 }
+
