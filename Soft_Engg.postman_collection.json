@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "6630819d-d314-4e7d-88df-fd3771f2a157",
+		"name": "Soft_Engg",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user_register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"nidhi11\",\r\n    \"emailId\":\"nidhi11\",\r\n    \"name\":\"test\",\r\n    \"password\":\"test\",\r\n    \"contactNo\":\"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authentication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"hsjoshi28\",\r\n     \"password\":\"new password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/user/authentication",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"user",
+						"authentication"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fotgot_password",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"emailId\":\"hsjoshi@iu.edu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/user/forgot/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"user",
+						"forgot",
+						"password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset_password",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\" : \"new password\",\r\n    \"token\" : \"cd99dcee-6b2b-4d45-9b9e-2ed9bf8487a6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8989/user/reset_password?token=4bcfbe20-9bbe-4fbf-a81d-a67a6f9fef9c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"user",
+						"reset_password"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "4bcfbe20-9bbe-4fbf-a81d-a67a6f9fef9c"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Announcement add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"announcementTitle\" : \"Hello\",\r\n    \"announcementDescription\" : \"Welcome to the class!\",\r\n    \"courseTitle\" : \"Software Engineering\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8989/announcement/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"announcement",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Announcement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"announcementTitle\" : \"Hello\",\r\n    \"announcementDescription\" : \"Welcome to the class!\",\r\n    \"courseTitle\" : \"Software Engineering\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8989/announcement/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"announcement",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Announcement Unapproved Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8989/announcement/get/unapproved?courseTitle=Software Engineering111",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"announcement",
+						"get",
+						"unapproved"
+					],
+					"query": [
+						{
+							"key": "courseTitle",
+							"value": "Software Engineering111"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Announcement Approved Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8989/announcement/get/unapproved?courseTitle=Software Engineering111",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"announcement",
+						"get",
+						"unapproved"
+					],
+					"query": [
+						{
+							"key": "courseTitle",
+							"value": "Software Engineering111"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assignment Get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"courseTitle\" : \"Software Engineering\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8989/assignment/get?courseTitle=Software Engineering",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"assignment",
+						"get"
+					],
+					"query": [
+						{
+							"key": "courseTitle",
+							"value": "Software Engineering"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assignment add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"assignmentTitle\" : \"Assignment 3\",\r\n    \"assignmentDescription\" : \"Introduction 3\",\r\n    \"courseTitle\" : \"Software Engineering\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8989/assignment/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8989",
+					"path": [
+						"assignment",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStudents",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetInstructors",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Instructor",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
