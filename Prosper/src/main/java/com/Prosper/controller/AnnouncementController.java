@@ -71,5 +71,12 @@ public class AnnouncementController {
 			return new ResponseEntity<>(announcementResponse, HttpStatus.OK);
 		}
 	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<List<AnnouncementEntity>> searchAnnouncementController(@RequestParam String announcementTitle){
+		logger.info("controller : /search [GET]");
+		List<AnnouncementEntity> announcementEntities = announcementService.searchAnnouncementTitleService(announcementTitle);
+		return new ResponseEntity<>(announcementEntities, HttpStatus.OK);
+	}
 
 }

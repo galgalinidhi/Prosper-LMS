@@ -1,5 +1,7 @@
 package com.Prosper.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -39,13 +41,17 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 			return announcementResponse;
 		}
 		else {
-			// To-Do :Add timestamp 
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = new Date();
+			String frmtdDate = dateFormat.format(date);
+			
 			announcementResponse = new AnnouncementResponse();
 			announcementEntity = new  AnnouncementEntity();
 			announcementEntity.courseTitle = announcementRequest.courseTitle;
 			announcementEntity.announcementTitle = announcementRequest.announcementTitle;
 			announcementEntity.announcementDescription = announcementRequest.announcementDescription;
 			announcementEntity.isApproved = 0;
+			announcementEntity.timeStamp = frmtdDate;
 			
 			announcementRepository.save(announcementEntity);
 			
@@ -85,6 +91,12 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 			return announcementResponse.response;
 		}
 		
+	}
+
+	public List<AnnouncementEntity> searchAnnouncementTitleService(String announcementTitle) {
+		List<AnnouncementEntity> announcementEntities = announcementRepository.searchByAnnouncementTitle(announcementTitle,1);
+		logger.info("Announcement Search GET Service: announcementTitle: "+announcementTitle);
+		return announcementEntities;
 	}
 	
 

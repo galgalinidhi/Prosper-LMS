@@ -27,7 +27,7 @@ public class AnnouncementEntity {
 	@Getter @Setter(AccessLevel.PACKAGE)
 	public int isApproved;
 	
-//	@Getter @Setter(AccessLevel.PACKAGE)
-//	public DateTime timeStamp;
+	@Getter @Setter(AccessLevel.PACKAGE)
+	public String timeStamp;
 	
 }
