@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/Register.css';
+import '../CSS/Register.css';
 
 export default function Register() {
 

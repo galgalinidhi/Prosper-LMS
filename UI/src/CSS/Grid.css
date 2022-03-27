@@ -27,3 +27,9 @@ body{
 .card-img-top{
     height: 25vh;
 }
+.container-fluid{
+color: rgb(145, 53, 68);
+}
+.navbar{
+    color: #2c5d63;
+}

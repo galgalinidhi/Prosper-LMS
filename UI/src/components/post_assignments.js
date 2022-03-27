@@ -5,9 +5,9 @@ import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
 import * as Gicons from "react-icons/gi"
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/announcement.css'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/bootstrap/dist/css/bootstrap.css'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
+import '../CSS/announcement.css'
+import '../bootstrap/dist/css/bootstrap.css'
+import '../CSS/sidebar.css'
 
 
 const sidemenu =[

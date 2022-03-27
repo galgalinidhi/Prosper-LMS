@@ -1,7 +1,7 @@
 import React from 'react'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/Home.css'
+import '../CSS/Home.css'
 import { Link } from 'react-router-dom'
-import Image from 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/images/Home.jpg'
+import Image from '../images/Home.jpg'
 
 export default function Home() {
     return (

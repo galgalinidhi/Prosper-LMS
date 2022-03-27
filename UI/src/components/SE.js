@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/Home.css'
+import '../CSS/Home.css'
 import { Link } from 'react-router-dom'
 import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
@@ -7,7 +7,7 @@ import * as IOicons from "react-icons/io"
 import * as Gicons from "react-icons/gi"
 import { IconContext } from 'react-icons/lib'
 
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
+import '../CSS/sidebar.css'
 const sidemenu =[
   {
     title: 'Dashboard',
