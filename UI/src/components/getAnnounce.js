@@ -1,4 +1,6 @@
-import React,{useState,Component} from 'react'
+
+
+import React,{useState,Component,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
@@ -7,7 +9,7 @@ import { IconContext } from 'react-icons/lib'
 import SD from '../components/student_dashboard'
 import {Table} from 'antd'
 import 'antd/dist/antd.css';
-
+import axios from 'axios';
 import '../CSS/sidebar.css'
 
 const sidemenu =[
@@ -44,6 +46,13 @@ const sidemenu =[
 ]
 
 const columns = [
+
+  {
+    
+    title : 'Course Title',
+    dataIndex : 'courseTitle',
+    key : 'courseTitle'
+},
     {
         title : 'Announcement Title',
         dataIndex : 'announcementTitle',
@@ -56,13 +65,13 @@ const columns = [
         dataIndex : 'announcementDescription',
         key : 'announcementDescription'
     },
-
     {
     
-        title : 'Course Title',
-        dataIndex : 'courseTitle',
-        key : 'courseTitle'
-    }
+      title : 'Posted On',
+      dataIndex : 'timeStamp',
+      key : 'timeStamp'
+  }
+   
 
 
 
@@ -71,26 +80,42 @@ const columns = [
 export default function Getpost () {
   var sd = SD();
   var data =[];
+
   console.log(sd.course_title);
 const[sidebar,setSidebar] = useState(false)
 const showSidebar =() => setSidebar(!sidebar)
-
+const[query,setquery] = useState("");
 const [assign_title, setAssignTitle] = useState("");
 const [description, setDescription] = useState("");
 const [course_title, setCourseTitle] = useState("");
 const [assignmentList, setAssignmentList] = useState([]);
 //window.onload=getAssignment();
-
-async function getAssignment(e){
-    e.preventDefault();
-  fetch('http://localhost:8989/announcement/get?courseTitle=Software Engineering')
-      .then(async response => {
-          data = await response.json();
-  setAssignmentList(data)
+const search = (dataSource) => {
+  return dataSource.filter((item) => item.announcementTitle.toLowerCase().includes(query) || item.announcementDescription.toLowerCase().includes(query) );
+};
+useEffect (() =>{
+  getAssignment();
+}, [])
+// async function getAssignment(e){
+//     e.preventDefault();
+//   fetch('http://localhost:8989/announcement/get/approved?courseTitle=Software Engineering')
+//       .then(async response => {
+//           data = await response.json();
+//   setAssignmentList(data)
   
-});
+// });
   
-}   
+  
+const getAssignment = () => {
+  axios.get("http://localhost:8989/announcement/get/approved?courseTitle=Software Engineering")
+  .then((response) => {
+  console.log(response.data);
+  setAssignmentList(response.data);
+  })
+  .catch((error) => {
+  console.log(error);
+  });
+  }
 //    const displayAssignment = (assignment) =>  {
 //        return <div key = {assignment.assignmentId} >{assignment.assignmentId}</div>
 
@@ -133,17 +158,16 @@ async function getAssignment(e){
      
     </nav>
     </IconContext.Provider>
+    <input type="text" placeholder='Search' className='search' onChange={(e) => setquery(e.target.value)}/>
     <div className='table text-center'>
-    <Table className='assignment-table' columns={columns} dataSource={assignmentList} pagination = {false}/>
+    <Table className='assignment-table' columns={columns} dataSource={search(assignmentList)} pagination = {false}/>
     </div>
     
-    <div className="text-center m-5-auto"> 
+    {/* <div className="text-center m-5-auto"> 
        
-       {/* for( var i=0; i<data.length; i++){
-           {data[i].course_title}
-       } */}
+      
 
-           <form onSubmit={getAssignment}>
+           <form onSubmit={getAssignment}> */}
               
              
               {/* <p>
@@ -152,13 +176,13 @@ async function getAssignment(e){
                   onChange={(e)=>setCourseTitle(e.target.value)} />
               </p> */}
 
-               <p>
+               {/* <p>
                   <button id="sub_btn" type="submit">Get Announcements</button>
               </p> 
- </form> 
+           </form> 
 
 
- </div>  
+ </div>   */}
     </>
     
 

@@ -7,7 +7,7 @@ import * as Gicons from "react-icons/gi"
 import { IconContext } from 'react-icons/lib'
 
 
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
+import '../CSS/sidebar.css'
 import EventsCalendar from './calendar'
 const sidemenu =[
   {

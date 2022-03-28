@@ -5,9 +5,9 @@ import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
 import * as Gicons from "react-icons/gi"
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/announcement.css'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/bootstrap/dist/css/bootstrap.css'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
+import 'C:/Users/nidhi/Documents/git_UI/git/Software-Engineering-Spring2022/UI/src/CSS/announcement.css'
+import '../bootstrap/dist/css/bootstrap.css'
+import '../CSS/sidebar.css'
 
 const sidemenu =[
   {
@@ -130,55 +130,39 @@ const showSidebar =() => setSidebar(!sidebar)
 <div className="text-center post">
 <h2>Post Announcements</h2>
 <hr/>
+
 <form>
-<div className="col-sm-6 offset-sm-3">
-    <label for="formGroupExampleInput">Course Name</label>
-     <input type="text" class="form-control" ref={post_course}id="post_id"/> 
-    {/* <select name="selectList" ref={post_course} id="selectList">
-  <option selected value="Select Course Id" />
-   <option value="option 1">Software Engineering</option>
-   <option value="option 2">Applied Algorithms</option>
-</select> */}
+<div className="input-group">
+    <label for="post_id">Course Name</label>
+     <input type="text"  ref={post_course}id="post_id"/> 
+   
   </div>
-  <div className="col-sm-6 offset-sm-3">
-    <label for="formGroupExampleInput">Title</label>
-    <input type="text" class="form-control" ref={post_title} id="post_title"/>
+  <div className="input-group">
+    <label for="post_title">Title</label>
+    <input type="text" ref={post_title} id="post_title"/>
   </div>
-  <div className="form-group">
-    <label for="formGroupExampleInput2">Subject</label>
-    <input type="text" class="form-control" ref={post_description}  id="post_subject" /><br />
+  <div className="input-group">
+    <label for="post_subject">Subject</label>
+    <textarea  ref={post_description}  id="post_subject" rows="8" /><br />
   </div>
-  <div>
+  <div className="button-container">
+  <div className="left"> 
+
   <button className="post-btn" onClick={postData}>Post</button> <br />
+
+  </div>
+  <div className="right">
+
   <button className="post-btn" onClick={clearPostOutput}>Clear</button>
   { postResult && <div className="alert alert-secondary mt-2" role="alert"><pre>{postResult}</pre></div> }
-  
-  </div>
+</div>
+</div>
 </form>
-</div>
-<br />
-<br />
-{/* <hr class="solid"></hr>
-<div className="recent_announce">
-    <h2>Recent Announcements</h2>
-</div>
-<div>
-  <span id="spanResult">
 
-</span>
-</div> 
-<Collapse accordion>
-    <Panel header="This is panel header 1" key="1">
-      <p>{text}</p>
-    </Panel>
-    <Panel header="This is panel header 2" key="2">
-      <p>{text}</p>
-    </Panel>
-    <Panel header="This is panel header 3" key="3">
-      <p>{text}</p>
-    </Panel>
-  </Collapse>,
-  mountNode, */}
+</div>
+<br />
+<br />
+
  </>
     )
 }

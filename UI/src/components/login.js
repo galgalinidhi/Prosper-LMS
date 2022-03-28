@@ -1,29 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/bootstrap/dist/css/bootstrap.css'
+import '../bootstrap/dist/css/bootstrap.css'
 import { Link } from 'react-router-dom';
 import GoogleBtn from './GoogleBtn'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/Login.css'
+import '../CSS/Login.css'
 
 
 
 export default function Login() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     var errormsg;
-    const navigate=useNavigate();
+    // const navigate=useNavigate();
 
-    const history = useNavigate();
-    useEffect(() => {
-        if(localStorage.getItem('user-info')) {
-            history("/add")
-        }
-    }, [])
-    async function login(){
-        console.log(userName,password)
+    // const history = useNavigate();
+    // useEffect(() => {
+    //     if(localStorage.getItem('user-info')) {
+    //         history("/add")
+    //     }
+    // }, [])
+    async function login(e){
+        e.preventDefault();
+        
         let item = {
-            "userName": userName,
-            "password": password
+            "userName": e.target[0].value,
+            "password": e.target[1].value
     }
          let res = await fetch(" http://localhost:8989/user/authentication",{
             method: 'POST',
@@ -39,6 +41,19 @@ export default function Login() {
         console.log(res);
         errormsg = res.response;
         console.log(errormsg);
+        if(res.userId!= -1){
+            
+            if(res.roleId == 2){
+                navigate("/instructor_dashboard")
+            }
+            else if(res.roleId == 3){
+                navigate("/admin_dashboard")
+            }
+            else{
+                navigate("/student_dashboard")
+            }
+
+        }
         
     //     const res = await fetch("http://localhost:8989/user/authentication", 
     //     {method: "POST" , 
@@ -65,22 +80,22 @@ export default function Login() {
         <div className="text-center m-5-auto">
             <h2>Login</h2>
             <div className="col-sm-6 offset-sm-3">
-                 <form action='/student_dashboard'> 
+                <form onSubmit={login} target = "blank">
                 <label>Username</label><br/>
-                <input type ="text" placeholder = "username"
+                <input type ="text" placeholder = "username" required
                 onChange={(e)=>setUserName(e.target.value)} 
                 className="form-control"/>
                 <br />
                 <label>Password</label><br/>
-                <input type ="password" placeholder = "password" 
+                <input type ="password" placeholder = "password" required
                 onChange={(e)=>setPassword(e.target.value)} 
                 className="form-control"/>
                 <br />
-                <button onClick={login} className='btn btn-primary' id='sub_btn'>Login</button>
+                <button type="submit" className='btn btn-primary' id='sub_btn'>Login</button>
                 <br />
-                <p>
+                {/* <p>
                     <GoogleBtn/>
-                </p>
+                </p> */}
                 <p><Link to="/passwordreset">Forgot password? </Link></p>
                
                

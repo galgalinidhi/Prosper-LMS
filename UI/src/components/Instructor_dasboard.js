@@ -7,7 +7,7 @@ import { IconContext } from 'react-icons/lib'
 import * as Gicons from "react-icons/gi"
 
 import IGrid from './Instructor_cards'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
+import '../CSS/sidebar.css'
 const sidemenu =[
   {
     title: 'Dashboard',

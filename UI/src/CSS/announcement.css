@@ -1,51 +1,31 @@
 
+
+
 h2 {
     font-weight: 300;
     text-align: center;}
     
 
+    form{
+        border-radius: 30px;
+        border: 3px solid #ddd;
+        height: fit-content;
+        margin-bottom: 40px;
+        
+    }
 
-.post_form {
-    position: relative;
-    float: left;
-    margin-top: 6rem;
-    background: #f3f3f3;
-    border: 3px solid #ddd;
-    border-radius: 10px;
-    padding: 5rem;
-    margin: 5rem 0 5rem 0
-}
-
-
-form label {
+ label {
     float: left;
     font-size: .9rem;
     margin: 0;
-    padding: 0
+    font-weight: bold;
+    padding: 0;
+    display:flex;
+  flex-direction:column;
 }
 
-.right-label {
-    float: center;
-    cursor: pointer
-}
 
-input {
-    width: 25rem;
-    padding: .3rem;
-    border-radius: 5px;
-    outline: none;
-    border: none
-}
 
-#sub_btn {
-    display: block;
-    width: 100%;
-    padding: .3rem;
-    border: none;
-    background: #222;
-    color: #fff;
-    border-radius: 3px;
-}
 
 .post-btn:hover {
     background: #333;
@@ -62,6 +42,26 @@ input {
     width: 100px;
     font: bold15px arial,sans-serif;
     text-shadow: none;
+    border-radius: 1.5rem;
     }
-
     
+
+    .left {
+        float: left;
+        margin-right:40px;
+        }
+        .right{
+        float: left;
+        }
+.input-group{
+margin-bottom: 30px;
+width: 50rem;
+}
+input, textarea{
+    width: 100%;
+    padding:10px;
+    outline: 0;
+    border: 1px solid ;
+    color: #fff;
+    font-size: 18px;
+}

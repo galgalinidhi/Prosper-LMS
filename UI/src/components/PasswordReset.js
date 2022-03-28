@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
 
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/Login.css'
+import '../CSS/Login.css'
 
 
 export default function PasswordReset() {

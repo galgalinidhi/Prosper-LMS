@@ -15,8 +15,10 @@ import SE from './components/SE';
 import InstDashboard from './components/Instructor_dasboard';
 import Getpost from './components/getAnnounce';
 import GetAssign from './components/view_assignments';
-
-
+import AdminDashboard from './components/Admin_dasboard';
+import Approveposts from './components/approve_posts';
+import Assign_instructor from './components/assign_instructor';
+import GetAllUsers from './components/GetUsers';
 function App() {
   return (
     <BrowserRouter>
@@ -33,10 +35,13 @@ function App() {
       <Route exact path = "/announcements" element = {<PostAnnounce/>}/>
       <Route exact path = "/assignments" element = {<PostAssign/>}/>
       <Route exact path = "/getassignments" element = {<GetAssign/>}/>
-      
+      <Route exact path = "/admin_dashboard" element = {<AdminDashboard/>}/>
       <Route exact path = "/SE" element = {<SE/>}/>
-      
+      <Route exact path = "/approveposts" element = {<Approveposts/>}/>
       <Route exact path = "/getannouncements" element = {<Getpost/>}/>
+      <Route exact path = "/assigninstructor" element = {<Assign_instructor/>}/>
+      <Route exact path = "/I_SE" element = {<GetAllUsers/>}/>
+
     </Routes>
     </BrowserRouter>
   );

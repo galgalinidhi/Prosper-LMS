@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/Grid.css'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/bootstrap/dist/css/bootstrap.css'
-import img1 from 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/images/se.jpg'
-import img2 from 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/images/cn.jpg'
-import img3 from 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/images/aa.jpg'
+import '../CSS/Grid.css'
+import '../bootstrap/dist/css/bootstrap.css'
+import img1 from '../images/se.jpg'
+import img2 from '../images/cn.jpg'
+import img3 from '../images/aa.jpg'
 const Card= props =>{
 return(
 <div className='card text-center'>

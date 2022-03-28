@@ -6,14 +6,21 @@
     align-items: center;
 }
 .navbar-instructor{
-    background-color: #167880 ;
+    background-color: #2E5266FF ;
     height: 80px;
     display: flex;
     justify-content: start;
     align-items: center;
 
 }
+.navbar-inverse{
+    background-color: #9FB1BCFF;
+    }
+.navbar-brand{
+    color: #000000;
+    font-weight: bold;
 
+}
 .menubars {
     margin-left: 2rem ;
     font-size: 2rem;
@@ -32,7 +39,7 @@
      transition: 850ms;
  }
  .nav-menu-instructor{
-    background-color: #167880;
+    background-color: #2E5266FF;
     width: 250px;
     height: 100vh;
     display: flex;
@@ -90,3 +97,18 @@ padding-left: 17rem;
 padding-right: 10rem;
 
  }
+.search
+{
+width: 16rem;
+float: right;
+margin-right: 3rem;
+margin-top: 1rem;
+}
+.assignment-table{
+    margin-top: 4rem;
+    
+}
+.sub_btn{
+    width: 5rem;
+    height: 3rem;
+}

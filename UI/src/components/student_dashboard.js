@@ -6,7 +6,7 @@ import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
 
 import Grid from './Course_cards'
-import 'C:/Users/nidhi/Documents/git_UI/UI/prosper/src/CSS/sidebar.css'
+import '../CSS/sidebar.css'
 const sidemenu =[
   {
     title: 'Dashboard',
