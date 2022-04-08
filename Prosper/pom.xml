@@ -69,6 +69,13 @@
 		  <artifactId>spring-boot-starter-tomcat</artifactId>
 		  <scope>provided</scope>
 		 </dependency>
+		 <!-- Dependency for file
+		 -->
+		 <dependency>
+		  <groupId>commons-fileupload</groupId>
+		  <artifactId>commons-fileupload</artifactId>
+		  <version>1.3.1</version>
+		</dependency>
 		 
 		 <dependency>
 		    <groupId>org.springframework.boot</groupId>

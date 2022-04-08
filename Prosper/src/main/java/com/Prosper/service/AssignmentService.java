@@ -1,9 +1,13 @@
 package com.Prosper.service;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.entity.CourseEntity;
@@ -60,7 +64,20 @@ public class AssignmentService {
 	}
 	
 	
-
+	public String store(MultipartFile file) throws IOException {
+//	    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+	    AssignmentEntity FileDB = new AssignmentEntity(file.getBytes());
+	    assignmentRepository.save(FileDB);
+	    return "OK";
+	  }
+	
+	public AssignmentEntity getFile(String id) {
+	    return assignmentRepository.findById(id).get();
+	  }
+	  
+	  public Stream<AssignmentEntity> getAllFiles() {
+	    return assignmentRepository.findAll().stream();
+	  }
 	
 }
 
