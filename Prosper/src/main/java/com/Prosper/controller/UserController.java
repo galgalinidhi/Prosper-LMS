@@ -114,4 +114,15 @@ public class UserController {
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
 		}
 	}
+	
+	@PutMapping("/assign_instructor")
+	public ResponseEntity<String> assignCourse(@RequestBody UserRequest userRequest){
+		logger.info("controller : user/assign_instructor [PUT]");
+		String userResponse = userService.assignCourseService(userRequest);
+		if(userResponse == "User name does not exists") {
+			return new ResponseEntity<>(userResponse, HttpStatus.BAD_REQUEST);
+		}else {
+			return new ResponseEntity<>(userResponse, HttpStatus.OK);
+		}
+	}
 }

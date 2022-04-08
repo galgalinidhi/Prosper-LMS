@@ -37,6 +37,10 @@ public class UserEntity {
 	 @Getter @Setter(AccessLevel.PACKAGE)
 	 public String resetPasswordToken;
 	 
+	 //Map Instructor with course.
+	 @Getter @Setter(AccessLevel.PACKAGE)
+	 public String courseName;
+	 
 	 @PrePersist
 	 void preInsert() {
 	    if (this.roleId == 0) {

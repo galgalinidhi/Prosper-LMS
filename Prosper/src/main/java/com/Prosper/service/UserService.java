@@ -255,4 +255,15 @@ public class UserService {
 		}
 	}
 
+	public String assignCourseService(UserRequest userRequest) {
+		UserEntity userIdUserName = userRepository.findByUserName(userRequest.userName);
+		if (userIdUserName == null) {
+			return "User name does not exists";
+		} else {
+			userIdUserName.courseName = userRequest.courseName;
+			userRepository.save(userIdUserName);
+			return "User Name mapped with Course Name";
+		}
+	}
+
 }

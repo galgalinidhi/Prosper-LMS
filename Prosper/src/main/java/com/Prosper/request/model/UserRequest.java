@@ -19,4 +19,5 @@ public class UserRequest {
 	 
 	 public String token;
 
+	 public String courseName;
 }
