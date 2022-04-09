@@ -54,9 +54,10 @@ public class AssignmentController {
 	}
 
 	@SuppressWarnings("static-access")
-	@PostMapping("/uploadFile")
-	public UploadFileResponse uploadFile(@RequestParam("assignmentTitle") String assignmentTitle,
-			@RequestParam("courseTitle") String courseTitle, @RequestParam("file") MultipartFile file)
+	@PostMapping("/uploadFile/{assignmentTitle}/{courseTitle}")
+//	public UploadFileResponse uploadFile(@RequestParam("assignmentTitle") String assignmentTitle,
+//			@RequestParam("courseTitle") String courseTitle, @RequestParam("file") MultipartFile file)
+	public UploadFileResponse uploadFile(@PathVariable String assignmentTitle,@PathVariable String courseTitle, @RequestParam("file") MultipartFile file)
 			throws Exception {
 		AssignmentEntity dbFile = assignmentService.storeFile(file, assignmentTitle, courseTitle);
 
