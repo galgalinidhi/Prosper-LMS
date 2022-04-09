@@ -1,13 +1,18 @@
 package com.Prosper.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -22,11 +27,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.request.model.AssignmentRequest;
 import com.Prosper.response.model.AssignmentResponse;
+import com.Prosper.response.model.UploadFileResponse;
 import com.Prosper.service.AssignmentService;
 
 import lombok.AllArgsConstructor;
@@ -45,9 +52,10 @@ public class AssignmentController {
 	private AssignmentService assignmentService;
 	
 	@PostMapping("/add")
-	public AssignmentResponse courseData(@RequestBody AssignmentRequest courseRequestModel) {
+	public AssignmentResponse courseData(@RequestBody AssignmentRequest courseRequestModel) throws Exception {
 		
-		return assignmentService.courseRegisterService(courseRequestModel); 
+		 assignmentService.courseRegisterService(courseRequestModel); 
+		 return null;
 	}
 	
 	@GetMapping("/get")
@@ -102,43 +110,87 @@ public class AssignmentController {
 //	    modelMap.addAttribute("assignment_entity", file);
 //	    return "fileUploadView";
 //	}
-	
-	 @PostMapping("/upload")
-	  public String uploadFile(@RequestParam("file") MultipartFile file) {
-	    String message = "";
-	    try {
-	      assignmentService.store(file);
-	      message = "Uploaded the file successfully: " + file.getOriginalFilename();
-	      return message;
-	    } catch (Exception e) {
-	      message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-	      return message;
-	    }
-	  }
-	 
-//	 @GetMapping("/files")
-//	  public ResponseEntity<List<String>> getListFiles() {
-//	    List<String> files = assignmentService.getAllFiles().map(dbFile -> {
-//	      String fileDownloadUri = ServletUriComponentsBuilder
-//	          .fromCurrentContextPath()
-//	          .path("/files/")
-//	          .path(dbFile.getId())
-//	          .toUriString();
-//	      return new ResponseFile(
-//	          dbFile.getName(),
-//	          fileDownloadUri,
-//	          dbFile.getType(),
-//	          dbFile.getData().length);
-//	    }).collect(Collectors.toList());
-//	    return ResponseEntity.status(HttpStatus.OK).body(files);
+//	
+//	 @PostMapping("/upload")
+//	  public String uploadFile(@RequestParam("file") MultipartFile file) {
+//	    String message = "";
+//	    try {
+//	      assignmentService.store(file);
+//	      message = "Uploaded the file successfully: " + file.getOriginalFilename();
+//	      return message;
+//	    } catch (Exception e) {
+//	      message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+//	      return message;
+//	    }
 //	  }
+//	 
+////	 @GetMapping("/files")
+////	  public ResponseEntity<List<String>> getListFiles() {
+////	    List<String> files = assignmentService.getAllFiles().map(dbFile -> {
+////	      String fileDownloadUri = ServletUriComponentsBuilder
+////	          .fromCurrentContextPath()
+////	          .path("/files/")
+////	          .path(dbFile.getId())
+////	          .toUriString();
+////	      return new ResponseFile(
+////	          dbFile.getName(),
+////	          fileDownloadUri,
+////	          dbFile.getType(),
+////	          dbFile.getData().length);
+////	    }).collect(Collectors.toList());
+////	    return ResponseEntity.status(HttpStatus.OK).body(files);
+////	  }
 //	  @GetMapping("/files/{id}")
-//	  public ResponseEntity<byte[]> getFile(@PathVariable Long id) {
-//	    AssignmentEntity fileDB = assignmentService.getFile(id);
+//	  public ResponseEntity<Optional<AssignmentEntity>> getFile(@PathVariable Long id) {
+//	    Optional<AssignmentEntity> fileDB = assignmentService.getFile(id);
 //	    return ResponseEntity.ok()
-//	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.uploadAssignmentQuestion + "\"")
-//	        .body(fileDB.uploadAssignmentQuestion);
+//	        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" )
+//	        .body(fileDB);
 //	  }
+//	  
+//	  
+//	  @GetMapping("/download/{fileName}")
+//	  public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileName) {
+//			AssignmentEntity entity= assignmentService.getFile(fileName);
+//			return ResponseEntity.ok()
+//					.contentType(MediaType.parseMediaType("UTF-8"))	
+//					.header(HttpHeaders.CONTENT_DISPOSITION,  "attachment; fileName = \"").
+//					body(new ByteArrayResource(entity.uploadAssignmentQuestion));
+//		}
+	
+	@PostMapping("/uploadFile")
+	public UploadFileResponse uploadFile(@RequestParam("assignmentTitle") String assignmentTitle,@RequestParam("courseTitle") String courseTitle, @RequestParam("file") MultipartFile file) throws Exception {
+		AssignmentEntity dbFile = assignmentService.storeFile(file,assignmentTitle,courseTitle);
+
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/").fromPath(dbFile.assignmentId.toString())
+				.toUriString();
+
+		return new UploadFileResponse(dbFile.fileName, fileDownloadUri, file.getContentType(), file.getSize());
+	}
+
+//	@PostMapping("/uploadMultipleFiles")
+//	public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+//		return Arrays.asList(files).stream().map(file -> {
+//			try {
+//				return uploadFile(file);
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			return null;
+//		}).collect(Collectors.toList());
+//	}
+
+	    @GetMapping("/downloadFile/{fileId}")
+	    public ResponseEntity<Resource> downloadFile(@PathVariable Long fileId) {
+	        // Load file from database
+	    	AssignmentEntity dbFile = assignmentService.getFile(fileId);
+
+	        return ResponseEntity.ok()
+	                .contentType(MediaType.parseMediaType(dbFile.fileType))
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.fileName + "\"")
+	                .body(new ByteArrayResource(dbFile.data));
+	    }
 	
 }
 

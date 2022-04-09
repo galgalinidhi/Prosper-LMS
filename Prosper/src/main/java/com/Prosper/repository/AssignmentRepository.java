@@ -8,11 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.Prosper.entity.AssignmentEntity;
 
 @Repository
-public interface AssignmentRepository extends JpaRepository<AssignmentEntity, String>{
+public interface AssignmentRepository extends JpaRepository<AssignmentEntity, Long>{
 	
 	public AssignmentEntity findByAssignmentTitle(String assignmentTitle);
 	public AssignmentEntity findByAssignmentDescription(String assignmentDescription);
 	public List<AssignmentEntity> findByCourseTitle(String courseTitle);
+//	public AssignmentEntity findByUploadAssignmentQuestion(String uploadAssignmentQuestion);
 
 	
 }
