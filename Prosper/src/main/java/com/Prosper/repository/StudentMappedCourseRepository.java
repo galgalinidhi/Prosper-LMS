@@ -2,8 +2,8 @@ package com.Prosper.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.Prosper.entity.StudentMappedCourse;
+import com.Prosper.entity.StudentMappedCourseEntity;
 
-public interface StudentMappedCourseRepository extends JpaRepository<StudentMappedCourse, Integer> {
+public interface StudentMappedCourseRepository extends JpaRepository<StudentMappedCourseEntity, Integer> {
 
 }

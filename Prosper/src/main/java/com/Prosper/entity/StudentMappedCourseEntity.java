@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-public class StudentMappedCourse {
+public class StudentMappedCourseEntity {
 	@Id
 	@GeneratedValue
 	public Long StudentMappedCourseId;

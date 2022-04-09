@@ -41,6 +41,9 @@ public class UserEntity {
 	 @Getter @Setter(AccessLevel.PACKAGE)
 	 public String courseName;
 	 
+	 @Getter @Setter(AccessLevel.PACKAGE)
+	 public String loginToken;
+	 
 	 @PrePersist
 	 void preInsert() {
 	    if (this.roleId == 0) {

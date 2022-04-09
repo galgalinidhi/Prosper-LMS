@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Prosper.request.model.UserRequest;
 import com.Prosper.response.model.UserResponse;
+import com.Prosper.service.StudentMappedCourseService;
 import com.Prosper.service.UserService;
 
 import lombok.AllArgsConstructor;
@@ -125,4 +126,20 @@ public class UserController {
 			return new ResponseEntity<>(userResponse, HttpStatus.OK);
 		}
 	}
+	
+	
+	// Below will be used to Map Student and Courses...
+	
+	@Autowired
+	private StudentMappedCourseService mappedCourseService;
+	
+	@PostMapping("/map_student")
+	public ResponseEntity<String> mapStudentWithCourse(@RequestBody UserRequest userRequest){
+		logger.info("controller: user/map_student [POST]");
+		String userResponse = mappedCourseService.mapStudentCourseService(userRequest);
+		
+		return new ResponseEntity<>(userResponse, HttpStatus.OK);
+	}
+	
+	
 }

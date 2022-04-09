@@ -22,5 +22,7 @@ public class UserResponse {
 	 public int roleId;
 	 
 	 public String token;
+	 
+	 public String loginToken;
 
 }
