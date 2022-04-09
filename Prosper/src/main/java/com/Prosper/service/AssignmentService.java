@@ -41,40 +41,11 @@ public class AssignmentService {
 		
 		
 		assignmentResponse = new AssignmentResponse();
-//		if(file!= null) {
-//			AssignmentService assignmentService = new AssignmentService();
-//			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//			assignmentEntity =  new AssignmentEntity(fileName, file.getContentType(), file.getBytes());
-////			AssignmentEntity dbFile = assignmentService.storeFile(file);
-//
-//			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/").fromPath(dbFile.assignmentId.toString())
-//					.toUriString();
-//		}
-//		else {
-//			assignmentEntity = new AssignmentEntity();
-//		}
 		assignmentEntity = new AssignmentEntity();
+		
 		assignmentEntity.assignmentTitle = assignmentRequestModel.assignmentTitle;
 		assignmentEntity.assignmentDescription = assignmentRequestModel.assignmentDescripton;
 		assignmentEntity.courseTitle = assignmentRequestModel.courseTitle;
-		// Save file
-//		if(file != null) {
-//			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//	
-//	        try {
-//	            // Check if the file's name contains invalid characters
-//	            if(fileName.contains("..")) {
-//	                throw new Exception("Sorry! Filename contains invalid path sequence " + fileName);
-//	            }
-//	
-////	            AssignmentEntity dbFile = new AssignmentEntity(fileName, file.getContentType(), file.getBytes());
-//	
-////	             assignmentRepository.save(dbFile);
-//	        } catch (IOException ex) {
-//	            throw new Exception("Could not store file " + fileName + ". Please try again!", ex);
-//	        }
-//		}
-		
 		
 		assignmentRepository.save(assignmentEntity);
 			
@@ -83,41 +54,15 @@ public class AssignmentService {
 		assignmentResponse.response = "Assignment successfully registered!";
 			
 		return assignmentResponse;
-		
-	
 	}
 
 	public List<AssignmentEntity> getAssignment(String courseTitle) {
-		// TODO Auto-generated method stub
 		List<AssignmentEntity> announcements = assignmentRepository.findByCourseTitle(courseTitle);
 		
 		return announcements;
 
 	}
 	
-	
-//	public String store(MultipartFile file) throws IOException {
-////	    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//	    AssignmentEntity FileDB = new AssignmentEntity(file.getBytes());
-//	    assignmentRepository.save(FileDB);
-//	    return "OK";
-//	  }
-//	
-//	
-//	  
-//	  public Stream<AssignmentEntity> getAllFiles() {
-//	    return assignmentRepository.findAll().stream();
-//	  }
-//
-//	public Optional<AssignmentEntity> getFile(Long id) {
-//		// TODO Auto-generated method stub
-//		return assignmentRepository.findById(id);
-//	}
-//
-//	public AssignmentEntity getFile(String fileName) {
-//		// TODO Auto-generated method stub
-//		return assignmentRepository.findByUploadAssignmentQuestion(fileName);
-//	}
 	
 	public AssignmentEntity storeFile(MultipartFile file, String assignmentTitle, String courseTitle) throws Exception {
         // Normalize file name
@@ -130,7 +75,6 @@ public class AssignmentService {
             }
             AssignmentEntity assignmentId = assignmentRepository.findByAssignmentTitle(assignmentTitle);
             AssignmentEntity dbFile = new AssignmentEntity(fileName, file.getContentType(), file.getBytes(), assignmentTitle, courseTitle, assignmentId.assignmentId, assignmentId.assignmentDescription);
-//            dbFile = assignmentRepository.findByAssignmentTitle(assignmentTitle);
             return assignmentRepository.save(dbFile);
         } catch (IOException ex) {
             throw new Exception("Could not store file " + fileName + ". Please try again!", ex);
