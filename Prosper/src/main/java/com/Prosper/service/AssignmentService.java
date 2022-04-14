@@ -46,7 +46,7 @@ public class AssignmentService {
 
 	}
 
-	public String storeFile(MultipartFile file, String assignmentTitle, String courseTitle,
+	public String storeFile(MultipartFile file, String assignmentTitle, String courseTitle, String dueDate,
 			String assignmentDescription) throws Exception {
 		List<AssignmentEntity> assignmentDBTitle = assignmentRepository.findByCourseTitle(courseTitle);
 		for (AssignmentEntity entity : assignmentDBTitle) {
@@ -64,7 +64,7 @@ public class AssignmentService {
 					throw new Exception("Sorry! Filename contains invalid path sequence " + fileName);
 				}
 				AssignmentEntity dbFile = new AssignmentEntity(fileName, file.getContentType(), file.getBytes(),
-						assignmentTitle, courseTitle, assignmentDescription);
+						assignmentTitle, courseTitle, dueDate, assignmentDescription);
 				assignmentRepository.save(dbFile);
 				return "File and Assignment OK";
 
@@ -76,6 +76,7 @@ public class AssignmentService {
 			dbFile.assignmentTitle = assignmentTitle;
 			dbFile.courseTitle = courseTitle;
 			dbFile.assignmentDescription = assignmentDescription;
+			dbFile.dueDate = dueDate;
 			assignmentRepository.save(dbFile);
 			return "Only Assignment OK";
 		}

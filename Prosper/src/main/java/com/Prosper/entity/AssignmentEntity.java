@@ -25,6 +25,9 @@ public class AssignmentEntity {
 	public String courseTitle;
 	
 	@Getter @Setter(AccessLevel.PACKAGE)
+	public String dueDate;
+	
+	@Getter @Setter(AccessLevel.PACKAGE)
 	public String fileName;
 
 	@Getter @Setter(AccessLevel.PACKAGE)
@@ -38,12 +41,13 @@ public class AssignmentEntity {
 
     }
 
-    public AssignmentEntity(String fileName, String fileType, byte[] data, String assignmentTitle, String courseTitle , String assignmentDescription) {
+    public AssignmentEntity(String fileName, String fileType, byte[] data, String assignmentTitle, String courseTitle ,String dueDate, String assignmentDescription) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
         this.assignmentTitle = assignmentTitle;
         this.courseTitle = courseTitle;
         this.assignmentDescription = assignmentDescription;
+        this.dueDate = dueDate;
     }
 }
