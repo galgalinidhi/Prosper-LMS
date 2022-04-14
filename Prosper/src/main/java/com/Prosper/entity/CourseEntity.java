@@ -15,7 +15,7 @@ public class CourseEntity {
 	 public Long courseId;
 	
 	@Getter @Setter(AccessLevel.PACKAGE)
-	 public String courseName;
+	 public String courseTitle;
 	
 	@Getter @Setter(AccessLevel.PACKAGE)
 	 public String courseDescription;
