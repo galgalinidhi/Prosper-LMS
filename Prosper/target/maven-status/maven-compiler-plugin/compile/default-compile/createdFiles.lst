@@ -21,9 +21,12 @@ com\Prosper\entity\CourseEntity.class
 com\Prosper\repository\AnnouncementRepository.class
 com\Prosper\response\model\AssignmentResponse.class
 com\Prosper\service\RoleService.class
+com\Prosper\service\SubmitAssignmentService.class
 com\Prosper\entity\UserEntity.class
 com\Prosper\service\AssignmentService.class
 com\Prosper\controller\AnnouncementController.class
+com\Prosper\entity\SubmitAssignmentEntity.class
+com\Prosper\repository\SubmitAssignmentRepository.class
 com\Prosper\controller\UserController.class
 com\Prosper\repository\AssignmentRepository.class
 com\Prosper\entity\StudentMappedCourseEntity.class

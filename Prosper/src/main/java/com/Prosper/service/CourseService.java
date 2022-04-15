@@ -1,5 +1,6 @@
 package com.Prosper.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.entity.CourseEntity;
+import com.Prosper.entity.StudentMappedCourseEntity;
 import com.Prosper.entity.UserEntity;
 import com.Prosper.repository.CourseRepository;
+import com.Prosper.repository.StudentMappedCourseRepository;
 import com.Prosper.request.model.CourseRequest;
 import com.Prosper.response.model.CourseResponse;
 import com.Prosper.response.model.UserResponse;
@@ -24,14 +27,16 @@ import lombok.extern.log4j.Log4j2;
 public class CourseService {
 	@Autowired
 	private CourseRepository courseRepository;
+	@Autowired
+	private StudentMappedCourseRepository studentMappedCourseRepository;
 	
 	private CourseEntity courseEntity = new CourseEntity();
 	private CourseResponse courseResponse = new CourseResponse();
 	
 	public CourseResponse courseRegisterService(CourseRequest courseRequestModel) {
 		CourseEntity courseId = courseRepository.findByCourseTitle(courseRequestModel.courseTitle);
-		CourseEntity courseDesc = courseRepository.findByCourseDescription(courseRequestModel.courseDescripton);
-		if(courseId != null && courseDesc != null) {
+//		CourseEntity courseDesc = courseRepository.findByCourseDescription(courseRequestModel.courseDescripton);
+		if(courseId != null) {
 			courseResponse = new CourseResponse();
 			courseResponse.courseId = courseId.courseId.intValue();
 			courseResponse.response = "Course already exists!";
@@ -64,7 +69,21 @@ public class CourseService {
 		return courseRepository.findByCourseTitle(courseTitle);
 	}
 	
-	
+	public List<CourseEntity> getCourseDetailsByUsername(String userName){
+		List<StudentMappedCourseEntity> coursesList = studentMappedCourseRepository.findByUserName(userName);
+		List<CourseEntity> coursesCards = new ArrayList<>();
+		List<String> courses = new ArrayList<>();
+		
+		for(StudentMappedCourseEntity entity: coursesList) {
+			courses.add(entity.courseName);
+		}
+		
+		for(String c: courses) {
+			CourseEntity courseE = courseRepository.findByCourseTitle(c);
+			coursesCards.add(courseE);
+		}
+		return coursesCards;
+	}
 
 	
 }

@@ -14,7 +14,11 @@ import com.Prosper.entity.UserEntity;
 public interface CourseRepository extends JpaRepository<CourseEntity, Integer>{
 	
 	public CourseEntity findByCourseTitle(String courseTitle);
+	
 	public CourseEntity findByCourseDescription(String courseDescription);
+	
 	@Query("SELECT c.courseTitle FROM CourseEntity c ")
 	List<String> findCourseTitle();
+	
+	
 }

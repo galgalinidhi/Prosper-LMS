@@ -60,6 +60,9 @@ public class CourseController {
 		return new ResponseEntity<>(courseService.getCourseDetailsService(courseTitle), HttpStatus.OK);
 	}
 	
-
+	@GetMapping("/getCourse")
+	public List<CourseEntity> getCoursesByUserName(@RequestParam String userName){
+		return courseService.getCourseDetailsByUsername(userName);
+	}
 	
 }

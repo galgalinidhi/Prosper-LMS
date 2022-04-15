@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.Prosper.entity.AssignmentEntity;
+import com.Prosper.entity.SubmitAssignmentEntity;
 import com.Prosper.request.model.AssignmentRequest;
 import com.Prosper.response.model.AssignmentResponse;
 import com.Prosper.response.model.UploadFileResponse;
 import com.Prosper.service.AssignmentService;
+import com.Prosper.service.SubmitAssignmentService;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -78,6 +81,44 @@ public class AssignmentController {
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(dbFile.fileType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.fileName + "\"")
 				.body(new ByteArrayResource(dbFile.data));
+	}
+	
+	// Above Controllers will be used for submitting assignments 
+	
+	@Autowired
+	private SubmitAssignmentService submitAssignmentService;
+	
+	@PostMapping("/submitAssignment/{assignmentTitle}/{courseTitle}/{userName}/{text}")
+	public ResponseEntity<String> submitAssignmentController(@PathVariable String assignmentTitle,@PathVariable String courseTitle, 
+			@PathVariable String userName, @PathVariable String text, @RequestParam("file") MultipartFile file)
+			throws Exception {
+		logger.info("Assignment Controller : /submitAssignment [POST] courseTitle="+courseTitle+" assignmentTitle= "+assignmentTitle+" file="+file.getName()+" userName "+userName);
+		String response = submitAssignmentService.submitAssignmentService(file, assignmentTitle, courseTitle, userName, text);
+		if(response == "Similar assignment Exists") {
+			return new ResponseEntity<>("Similar assignment Exists",HttpStatus.CONFLICT);
+		}
+		return new ResponseEntity<>("Student Assignment uploaded successfully",HttpStatus.OK);
+	}
+	
+	@GetMapping("/downloadAssignment/{submitAssignmentId}")
+	public ResponseEntity<Resource> downloadStudentFile(@PathVariable Long submitAssignmentId) {
+		logger.info("Assignment Controller : /downloadAssignmentFile [GET] submitAssignmentId="+submitAssignmentId);
+		// Load file from database
+		SubmitAssignmentEntity dbFile = submitAssignmentService.getFile(submitAssignmentId);
+		
+		if(dbFile.fileType == null) {
+			return ResponseEntity.noContent().build();
+		}
+
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(dbFile.fileType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + dbFile.fileName + "\"")
+				.body(new ByteArrayResource(dbFile.data));
+	}
+	
+	@PutMapping("/grade")
+	public String gradeStudentAssignmentController(@RequestParam Long  submitAssignmentId, @RequestParam String  grade) {
+		submitAssignmentService.gradeAssignmentService(submitAssignmentId, grade);
+		return "OK";
 	}
 
 }

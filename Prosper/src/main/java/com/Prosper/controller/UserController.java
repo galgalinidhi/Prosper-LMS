@@ -137,6 +137,9 @@ public class UserController {
 	public ResponseEntity<String> mapStudentWithCourse(@RequestBody UserRequest userRequest){
 		logger.info("controller: user/map_student [POST]");
 		String userResponse = mappedCourseService.mapStudentCourseService(userRequest);
+		if (userResponse == "already mapped") {
+			return new ResponseEntity<>(userResponse, HttpStatus.CONFLICT);
+		}
 		
 		return new ResponseEntity<>(userResponse, HttpStatus.OK);
 	}
