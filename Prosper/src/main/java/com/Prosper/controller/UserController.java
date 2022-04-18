@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Prosper.entity.UserEntity;
 import com.Prosper.request.model.UserRequest;
 import com.Prosper.response.model.UserResponse;
 import com.Prosper.service.StudentMappedCourseService;
@@ -125,6 +126,11 @@ public class UserController {
 		}else {
 			return new ResponseEntity<>(userResponse, HttpStatus.OK);
 		}
+	}
+	
+	@GetMapping("/getAlllDetails")
+	public List<UserEntity> getAllUserDetails(){
+		return userService.getAllUserDetailsService();
 	}
 	
 	

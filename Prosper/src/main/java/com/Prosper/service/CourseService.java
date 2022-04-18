@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.entity.CourseEntity;
@@ -12,6 +13,7 @@ import com.Prosper.entity.StudentMappedCourseEntity;
 import com.Prosper.entity.UserEntity;
 import com.Prosper.repository.CourseRepository;
 import com.Prosper.repository.StudentMappedCourseRepository;
+import com.Prosper.repository.UserRepository;
 import com.Prosper.request.model.CourseRequest;
 import com.Prosper.response.model.CourseResponse;
 import com.Prosper.response.model.UserResponse;
@@ -83,6 +85,16 @@ public class CourseService {
 			coursesCards.add(courseE);
 		}
 		return coursesCards;
+	}
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	public CourseEntity getCourseInstructorDetailsByUsername(String userName) {
+		// TODO Auto-generated method stub
+		UserEntity userEntity = userRepository.findByUserName(userName);
+		CourseEntity courseEntity =  courseRepository.findByCourseTitle(userEntity.courseName);
+		return courseEntity;
 	}
 
 	

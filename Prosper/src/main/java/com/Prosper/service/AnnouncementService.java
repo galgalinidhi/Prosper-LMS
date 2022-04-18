@@ -41,7 +41,7 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 			return announcementResponse;
 		}
 		else {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm a ");
 			Date date = new Date();
 			String frmtdDate = dateFormat.format(date);
 			
@@ -69,24 +69,24 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 		return announcements;
 	}
 	
-	public List<AnnouncementEntity> getUnapprovedAnnouncementService(String courseTitle) {
-		List<AnnouncementEntity> announcements = announcementRepository.findByCourseTitleAndIsApproved(courseTitle, 0);
-		logger.info("Announcement Unapproved GET Service: courseTitle: "+courseTitle);
+	public List<AnnouncementEntity> getUnapprovedAnnouncementService() {
+		List<AnnouncementEntity> announcements = announcementRepository.findByIsApproved(0);
+		logger.info("Announcement Unapproved GET Service ");
 		return announcements;
 	}
 
-	public String approveAnnouncement(String announcementTitle) {
-		AnnouncementEntity announcementEntity = announcementRepository.findByAnnouncementTitle(announcementTitle);
+	public String approveAnnouncement(Long announcementId) {
+		AnnouncementEntity announcementEntity = announcementRepository.findByAnnouncementId(announcementId);
 		if (announcementEntity == null) {
 			announcementResponse = new AnnouncementResponse();
 			announcementResponse.response = "Announcement title not found";
-			logger.info("Announcement Title Not Found : "+announcementTitle);
+			logger.info("Announcement Title Not Found : announcementId "+announcementId);
 			return announcementResponse.response;
 		} else {
 			announcementResponse = new AnnouncementResponse();
 			announcementEntity.isApproved = 1;
 			announcementRepository.save(announcementEntity);
-			logger.info("Announcement Title updated : "+announcementTitle);
+			logger.info("Announcement Title updated : announcementId "+announcementId);
 			announcementResponse.response = "Announcement approved successfully";
 			return announcementResponse.response;
 		}
@@ -97,6 +97,12 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 		List<AnnouncementEntity> announcementEntities = announcementRepository.searchByAnnouncementTitle(announcementTitle,1);
 		logger.info("Announcement Search GET Service: announcementTitle: "+announcementTitle);
 		return announcementEntities;
+	}
+
+	public String deleteAnnouncementService(Long announcementId) {
+		AnnouncementEntity entity = announcementRepository.findByAnnouncementId(announcementId);
+		announcementRepository.delete(entity);
+		return "OK";
 	}
 	
 

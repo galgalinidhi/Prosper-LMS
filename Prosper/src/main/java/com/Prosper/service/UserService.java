@@ -104,8 +104,9 @@ public class UserService {
 	
 //				UserEntity userEntity = userRepository.findByUserName(userRegisterRequest.userName);
 				
-				userResponse.roleId = userEntity.roleId;
+				userResponse.roleId = UserInDB.roleId;
 				userResponse.loginToken = loginToken;
+				userResponse.userName = UserInDB.userName;
 				logger.info("Service : POST User Correct Authentication: user_id = "+userResponse.userId +" userName: " + userRegisterRequest.userName + " Password Auth: "+authentication);
 				return userResponse;
 			}
@@ -216,18 +217,18 @@ public class UserService {
 	}
 
 	public List<String> getAllStudentService() {
-		List<String> listUsers = userRepository.findByRoleId(1);
+		List<String> listUsers = userRepository.FindByRoleId(1);
 		return listUsers;
 	}
 
 	public List<String> getAllInstructorService() {
-		List<String> listUsers = userRepository.findByRoleId(2);
+		List<String> listUsers = userRepository.FindByRoleId(2);
 		return listUsers;
 	}
 
 	public List<String> getAllUserService() {
-		List<String> studentUsers = userRepository.findByRoleId(1);
-		List<String> instructorUsers = userRepository.findByRoleId(2);
+		List<String> studentUsers = userRepository.FindByRoleId(1);
+		List<String> instructorUsers = userRepository.FindByRoleId(2);
 		studentUsers.addAll(instructorUsers);
 		return studentUsers;
 	}
@@ -271,6 +272,14 @@ public class UserService {
 			userRepository.save(userIdUserName);
 			return "User Name mapped with Course Name";
 		}
+	}
+
+	public List<UserEntity> getAllUserDetailsService() {
+		// TODO Auto-generated method stub
+		List<UserEntity> getAllStudentDetails = userRepository.findByRoleId(1);
+		List<UserEntity> getAllInstructorDetails = userRepository.findByRoleId(2);
+		getAllStudentDetails.addAll(getAllInstructorDetails);
+		return getAllStudentDetails;
 	}
 
 }

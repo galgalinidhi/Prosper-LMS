@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 //	String findByResetPasswordToken(@Param("resetPasswordToken") String token);
 	
 	@Query("SELECT u.userName FROM UserEntity u WHERE u.roleId = :roleId")
-	public List<String> findByRoleId(int roleId);
+	public List<String> FindByRoleId(int roleId);
 	
 	public UserEntity findByResetPasswordToken(String token);
 	
@@ -36,6 +36,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	
 	public UserEntity findByUserName(String userName);
 	
-//	public List<UserEntity> findByRoleId(int roleId);
+	public List<UserEntity> findByRoleId(int roleId);
 
 }

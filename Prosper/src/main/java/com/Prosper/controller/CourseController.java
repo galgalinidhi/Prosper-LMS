@@ -60,9 +60,16 @@ public class CourseController {
 		return new ResponseEntity<>(courseService.getCourseDetailsService(courseTitle), HttpStatus.OK);
 	}
 	
+	//Below will be used to get course Details for student
 	@GetMapping("/getCourse")
 	public List<CourseEntity> getCoursesByUserName(@RequestParam String userName){
 		return courseService.getCourseDetailsByUsername(userName);
+	}
+	
+	//Below will be used to get Course Details for instructor
+	@GetMapping("/getInstructorCourse/{userName}")
+	public CourseEntity getInstructorCoursesByUserName(@PathVariable String userName){
+		return courseService.getCourseInstructorDetailsByUsername(userName);
 	}
 	
 }
