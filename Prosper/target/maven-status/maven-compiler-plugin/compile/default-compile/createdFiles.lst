@@ -31,5 +31,6 @@ com\Prosper\controller\UserController.class
 com\Prosper\repository\AssignmentRepository.class
 com\Prosper\entity\StudentMappedCourseEntity.class
 com\Prosper\service\StudentMappedCourseService.class
+com\Prosper\response\model\StudentSubmissionResponse.class
 com\Prosper\service\AnnouncementService.class
 com\Prosper\service\UserService.class

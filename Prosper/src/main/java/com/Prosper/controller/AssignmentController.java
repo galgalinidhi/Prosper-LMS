@@ -28,6 +28,7 @@ import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.entity.SubmitAssignmentEntity;
 import com.Prosper.request.model.AssignmentRequest;
 import com.Prosper.response.model.AssignmentResponse;
+import com.Prosper.response.model.StudentSubmissionResponse;
 import com.Prosper.response.model.UploadFileResponse;
 import com.Prosper.service.AssignmentService;
 import com.Prosper.service.SubmitAssignmentService;
@@ -117,8 +118,15 @@ public class AssignmentController {
 	
 	@PutMapping("/grade")
 	public String gradeStudentAssignmentController(@RequestParam Long  submitAssignmentId, @RequestParam String  grade) {
+		logger.info("Assignment Controller : /grade [PUT] courseTitle="+submitAssignmentId+" grade "+grade);
 		submitAssignmentService.gradeAssignmentService(submitAssignmentId, grade);
 		return "OK";
+	}
+	
+	@GetMapping("/getStudentSubmission")
+	public List<StudentSubmissionResponse> getStudentSubmissionController(@RequestParam String courseTitle) {
+		logger.info("Assignment Controller : /getStudentSubmission [GET] courseTitle="+courseTitle);
+		return submitAssignmentService.getStudentSubmissionService(courseTitle);
 	}
 
 }

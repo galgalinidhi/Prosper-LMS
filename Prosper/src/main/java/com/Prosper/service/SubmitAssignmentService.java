@@ -1,6 +1,8 @@
 package com.Prosper.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Prosper.entity.AssignmentEntity;
 import com.Prosper.entity.SubmitAssignmentEntity;
+import com.Prosper.entity.UserEntity;
 import com.Prosper.repository.SubmitAssignmentRepository;
+import com.Prosper.repository.UserRepository;
+import com.Prosper.response.model.StudentSubmissionResponse;
 
 @Service
 public class SubmitAssignmentService {
@@ -57,6 +62,33 @@ public class SubmitAssignmentService {
 		assignmnetDb.grade = grade;
 		submitAssignmentRepository.save(assignmnetDb);
 		return "OK";
+	}
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	public List<StudentSubmissionResponse> getStudentSubmissionService(String courseTitle) {
+		List<StudentSubmissionResponse> submissionList = new ArrayList<>();
+		
+		List<SubmitAssignmentEntity> entity = submitAssignmentRepository.findByCourseTitle(courseTitle);
+		
+		for(SubmitAssignmentEntity ent : entity) {
+			UserEntity uEntity = userRepository.findByUserName(ent.userName);
+			StudentSubmissionResponse submissionResponse = new StudentSubmissionResponse();
+			
+			submissionResponse.studentSubmissionResponseId = ent.submitAssignmentEntityId;
+			submissionResponse.name = uEntity.name;
+			submissionResponse.courseName = courseTitle;
+			submissionResponse.assignmentTitle = ent.assignmentTitle;
+			submissionResponse.textSubmission = ent.textSubmission;
+			submissionResponse.userName= ent.userName;
+			submissionResponse.fileName = ent.fileName;
+			submissionList.add(submissionResponse);
+		}
+		
+		return submissionList;
+		
+		
 	}
 
 }
