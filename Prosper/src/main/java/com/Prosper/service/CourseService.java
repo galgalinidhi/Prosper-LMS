@@ -37,7 +37,6 @@ public class CourseService {
 	
 	public CourseResponse courseRegisterService(CourseRequest courseRequestModel) {
 		CourseEntity courseId = courseRepository.findByCourseTitle(courseRequestModel.courseTitle);
-//		CourseEntity courseDesc = courseRepository.findByCourseDescription(courseRequestModel.courseDescripton);
 		if(courseId != null) {
 			courseResponse = new CourseResponse();
 			courseResponse.courseId = courseId.courseId.intValue();
@@ -63,7 +62,6 @@ public class CourseService {
 
 	public List<String> getCourseService() {
 		List<String> courses = courseRepository.findCourseTitle();
-		
 		return courses;
 	}
 
@@ -71,31 +69,36 @@ public class CourseService {
 		return courseRepository.findByCourseTitle(courseTitle);
 	}
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	public List<CourseEntity> getCourseDetailsByUsername(String userName){
-		List<StudentMappedCourseEntity> coursesList = studentMappedCourseRepository.findByUserName(userName);
+		UserEntity userEntity = userRepository.findByUserName(userName);
 		List<CourseEntity> coursesCards = new ArrayList<>();
-		List<String> courses = new ArrayList<>();
+		if(userEntity == null) {
+			return coursesCards;
+		}
 		
+		if(userEntity.roleId == 2) { // It is instructor
+			CourseEntity courseEntity =  courseRepository.findByCourseTitle(userEntity.courseName);
+			coursesCards.add(courseEntity);
+			return coursesCards;
+		}else { // Else Student
+		List<StudentMappedCourseEntity> coursesList = studentMappedCourseRepository.findByUserName(userName);
+		List<String> courses = new ArrayList<>();
 		for(StudentMappedCourseEntity entity: coursesList) {
 			courses.add(entity.courseName);
 		}
-		
 		for(String c: courses) {
 			CourseEntity courseE = courseRepository.findByCourseTitle(c);
 			coursesCards.add(courseE);
 		}
 		return coursesCards;
+		}
 	}
 
-	@Autowired
-	private UserRepository userRepository;
 	
-	public CourseEntity getCourseInstructorDetailsByUsername(String userName) {
-		// TODO Auto-generated method stub
-		UserEntity userEntity = userRepository.findByUserName(userName);
-		CourseEntity courseEntity =  courseRepository.findByCourseTitle(userEntity.courseName);
-		return courseEntity;
-	}
+	
 
 	
 }

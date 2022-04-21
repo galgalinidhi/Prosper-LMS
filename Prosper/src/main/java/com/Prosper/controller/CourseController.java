@@ -50,7 +50,7 @@ public class CourseController {
 	
 	@GetMapping("/get")
 	public ResponseEntity<List<String>> getcourseData() {
-		logger.info("Course Controller : /get LIST of courses [GET] ");
+		logger.info("Course Controller : /get LIST of courses String [GET]  ");
 		return new ResponseEntity<>(courseService.getCourseService(), HttpStatus.OK);
 	}
 	
@@ -60,16 +60,11 @@ public class CourseController {
 		return new ResponseEntity<>(courseService.getCourseDetailsService(courseTitle), HttpStatus.OK);
 	}
 	
-	//Below will be used to get course Details for student
+	//Below will be used to get course Details for student and instructor
 	@GetMapping("/getCourse")
 	public List<CourseEntity> getCoursesByUserName(@RequestParam String userName){
+		logger.info("Course Controller : /getCourse [GET] userName="+userName);
 		return courseService.getCourseDetailsByUsername(userName);
-	}
-	
-	//Below will be used to get Course Details for instructor
-	@GetMapping("/getInstructorCourse/{userName}")
-	public CourseEntity getInstructorCoursesByUserName(@PathVariable String userName){
-		return courseService.getCourseInstructorDetailsByUsername(userName);
 	}
 	
 }

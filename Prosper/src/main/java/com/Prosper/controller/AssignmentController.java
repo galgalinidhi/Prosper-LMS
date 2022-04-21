@@ -91,9 +91,9 @@ public class AssignmentController {
 	
 	@PostMapping("/submitAssignment/{assignmentTitle}/{courseTitle}/{userName}/{text}")
 	public ResponseEntity<String> submitAssignmentController(@PathVariable String assignmentTitle,@PathVariable String courseTitle, 
-			@PathVariable String userName, @PathVariable String text, @RequestParam("file") MultipartFile file)
+			@PathVariable String userName, @PathVariable String text, @RequestParam(name="file",required=false) MultipartFile file)
 			throws Exception {
-		logger.info("Assignment Controller : /submitAssignment [POST] courseTitle="+courseTitle+" assignmentTitle= "+assignmentTitle+" file="+file.getName()+" userName "+userName);
+		logger.info("Assignment Controller : /submitAssignment [POST] courseTitle="+courseTitle+" assignmentTitle= "+assignmentTitle+" userName "+userName+ "file "+ file);
 		String response = submitAssignmentService.submitAssignmentService(file, assignmentTitle, courseTitle, userName, text);
 		if(response == "Similar assignment Exists") {
 			return new ResponseEntity<>("Similar assignment Exists",HttpStatus.CONFLICT);

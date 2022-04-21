@@ -34,7 +34,7 @@ public class RoleService {
 		
 		roleEntity = new RoleEntity();
 		roleEntity.roleId = (long) 2;
-		roleEntity.RoleName = "Teacher";
+		roleEntity.RoleName = "Instructor";
 		roleRepository.save(roleEntity);
 		
 		roleEntity = new RoleEntity();

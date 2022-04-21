@@ -44,13 +44,14 @@ public class SubmitAssignmentEntity {
 	public SubmitAssignmentEntity () {}
 
 	public SubmitAssignmentEntity(String assignmentTitle, String courseTitle, String userName, String fileName,
-			String fileType, byte[] data) {
+			String fileType, byte[] data, String textSubmission) {
 		this.assignmentTitle = assignmentTitle;
 		this.courseTitle = courseTitle;
 		this.userName = userName;
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.data = data;
+		this.textSubmission = textSubmission;
 	}
 
 	public SubmitAssignmentEntity(String assignmentTitle, String courseTitle, String userName, String textSubmission) {
