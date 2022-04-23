@@ -1,37 +1,29 @@
 package com.Prosper.request.model;
 
+import lombok.*;
+
+import java.util.Date;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class ChatMessage {
-    private MessageType type;
-    private String content;
-    private String sender;
-
-    public enum MessageType {
-        CHAT,
-        JOIN,
-        LEAVE
-    }
-
-    public MessageType getType() {
-        return type;
-    }
-
-    public void setType(MessageType type) {
-        this.type = type;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
+	@Getter @Setter
+    public String senderName;
+	@Getter @Setter
+	public String receiverName;
+	@Getter @Setter
+	public String message;
+	@Getter @Setter
+	public String date;
+	@Getter @Setter
+	public ChatStatus status;
+	public String getReceiverName() {
+		return receiverName;
+	}
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
 }
