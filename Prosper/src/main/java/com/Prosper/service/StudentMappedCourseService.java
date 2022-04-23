@@ -36,6 +36,8 @@ public class StudentMappedCourseService {
 		mappedCourseEntity.userName = userRequest.userName;
 		mappedCourseEntity.courseName = userRequest.courseName;
 		mappedCourseRepository.save(mappedCourseEntity);
+		
+		
 		return "OK";
 	}
 

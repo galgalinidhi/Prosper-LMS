@@ -5,6 +5,7 @@ com\Prosper\response\model\UserResponse.class
 com\Prosper\controller\AssignmentController.class
 com\Prosper\request\model\UserRequest.class
 com\Prosper\entity\AnnouncementEntity.class
+com\Prosper\controller\WebSocketEventListener.class
 com\Prosper\ProsperApplication.class
 com\Prosper\request\model\AnnouncementRequest.class
 com\Prosper\request\model\CourseRequest.class
@@ -12,11 +13,13 @@ com\Prosper\controller\CourseController.class
 com\Prosper\entity\RoleEntity.class
 com\Prosper\repository\CourseRepository.class
 com\Prosper\entity\AssignmentEntity.class
+com\Prosper\controller\ChatController.class
 com\Prosper\request\model\AssignmentRequest.class
 com\Prosper\response\model\AnnouncementResponse.class
 com\Prosper\response\model\CourseResponse.class
 com\Prosper\repository\RoleRepository.class
 com\Prosper\repository\StudentMappedCourseRepository.class
+com\Prosper\service\WebSocketConfig.class
 com\Prosper\entity\CourseEntity.class
 com\Prosper\repository\AnnouncementRepository.class
 com\Prosper\response\model\AssignmentResponse.class
@@ -28,8 +31,10 @@ com\Prosper\controller\AnnouncementController.class
 com\Prosper\entity\SubmitAssignmentEntity.class
 com\Prosper\repository\SubmitAssignmentRepository.class
 com\Prosper\controller\UserController.class
+com\Prosper\request\model\ChatMessage$MessageType.class
 com\Prosper\repository\AssignmentRepository.class
 com\Prosper\entity\StudentMappedCourseEntity.class
+com\Prosper\request\model\ChatMessage.class
 com\Prosper\service\StudentMappedCourseService.class
 com\Prosper\response\model\StudentSubmissionResponse.class
 com\Prosper\service\AnnouncementService.class
