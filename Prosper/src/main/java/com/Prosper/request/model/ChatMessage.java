@@ -26,4 +26,5 @@ public class ChatMessage {
 	public void setReceiverName(String receiverName) {
 		this.receiverName = receiverName;
 	}
+	// I guess need to put courseTitle here...
 }
