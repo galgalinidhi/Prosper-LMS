@@ -1,0 +1,55 @@
+body{
+    background: radial-gradient(#e5e5e5,#ffff,#e5e5e5) ;
+
+}
+.card{
+  
+    height: 50vh;
+    margin-top: 5rem;
+    width: 20rem;
+    margin-left: 2rem;
+    margin-right: -3rem;
+    
+    
+}
+.cardbody{
+    padding: 1.5rem;
+    margin-left: 5rem;
+}
+.card-body{
+    padding: 3rem 0!important;
+
+}
+.card-text{
+    
+    font-size:  9rem ;
+    padding: 0.4rem 1.9rem;
+
+}
+.overflow
+{
+    height: 20vh;
+   
+    width: 20rem;
+}
+.card-img-top{
+    height: 25vh;
+}
+.container-fluid{
+color: rgb(145, 53, 68);
+}
+.navbar{
+    color: #2c5d63;
+}
+.navbar-right{
+    color: black;
+}
+.adminlogout{
+    color: black;
+    font-size: 20px;
+}
+.card-menu{
+    height: 40vh;
+    margin-top: 5rem;
+    width: 15rem;
+}

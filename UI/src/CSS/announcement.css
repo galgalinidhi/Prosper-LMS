@@ -1,0 +1,67 @@
+
+
+
+h2 {
+    font-weight: 300;
+    text-align: center;}
+    
+
+    form{
+        border-radius: 30px;
+        border: 3px solid #ddd;
+        height: fit-content;
+        margin-bottom: 40px;
+        
+    }
+
+ label {
+    float: left;
+    font-size: .9rem;
+    margin: 0;
+    font-weight: bold;
+    padding: 0;
+    display:flex;
+  flex-direction:column;
+}
+
+
+
+
+.post-btn:hover {
+    background: #333;
+    transition: all .5s
+}
+
+
+.post-btn{
+    background: #2E5266FF;
+    color: white;
+    border-style: outset;
+    border-color: #062521;
+    height: 50px;
+    width: 100px;
+    font: bold15px arial,sans-serif;
+    text-shadow: none;
+    
+    }
+    
+
+    .left {
+        float: left;
+        margin-right:40px;
+        }
+        .right{
+        float: left;
+        }
+.input-group{
+margin-bottom: 30px;
+width: 50rem;
+}
+input, textarea{
+    width: 100%;
+    padding:10px;
+    outline: 0;
+    border: 1px solid ;
+    color: #fff;
+    font-size: 18px;
+}
