@@ -39,11 +39,11 @@ function App() {
       <Route exact path = "/PasswordReset" element = {<PasswordReset/>}/>
       <Route exact path = "/changepassword" element = {<Change_password/>}/>
       <Route exact path = "/student_dashboard/:username" element = {<SD/>}/>
-      <Route exact path = "/instructor_dashboard/:username" element = {<InstDashboard/>}/>
-      <Route exact path = "/instructor_course/:subject" element = {<Inst_course/>}/>
+      <Route exact path = "/instructor_dashboard/:username/" element = {<InstDashboard/>}/>
+      <Route exact path = "/instructor_course/:username/:subject" element = {<Inst_course/>}/>
       <Route exact path = "/calendar" element = {<EventsCalendar/>}/>
-      <Route exact path = "/announcements/:subject" element = {<PostAnnounce/>}/>
-      <Route exact path = "/postassignments/:subject" element = {<PostAssignment/>}/>
+      <Route exact path = "/announcements/:username/:subject" element = {<PostAnnounce/>}/>
+      <Route exact path = "/postassignments/:username/:subject" element = {<PostAssignment/>}/>
       <Route exact path = "/getassignments/:username/:subject" element = {<GetAssign/>}/>
       <Route exact path = "/admin_dashboard" element = {<AdminDashboard/>}/>
       <Route exact path = "/SE/:username/:subject" element = {<SE/>}/>
@@ -58,7 +58,7 @@ function App() {
       <Route exact path = "/getgrades/:username/:subject" element = {<GetGrades/>}/>
       <Route exact path = "/assigninstructor" element = {<Assign_instructor/>}/>
       <Route exact path = "/getusers" element = {<GetAllUsers/>}/>
-      <Route exact path = "/gradeassignments/:subject" element = {<GradeAssignment/>}/>
+      <Route exact path = "/gradeassignments/:username/:subject" element = {<GradeAssignment/>}/>
       <Route exact path = "/chat/:username" element = {<Chat/>}/>
       <Route exact path = "/chattry" element = {<Chat_try/>}/>
       <Route exact path = "/adduser" element = {<Adduser/>}/>

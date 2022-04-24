@@ -5,6 +5,7 @@ import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
+import { BiArrowBack } from "react-icons/bi";
 import Button from "@material-ui/core/Button";
 import  DatePicker  from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -20,7 +21,7 @@ import '../CSS/sidebar.css'
 export default function PostAssignment() {
   const[sidebar,setSidebar] = useState(false)
   const showSidebar =() => setSidebar(!sidebar)
-  const {subject} = useParams();
+  const {username,subject} = useParams();
   const post_title = useRef(null);
   const post_description = useRef(null);
   const post_course = useRef(null);
@@ -33,17 +34,11 @@ export default function PostAssignment() {
   const sidemenu =[
     {
       title: 'Dashboard',
-      path: '/instructor_dashboard',
+      path: `/instructor_dashboard/${username}`,
       icon: <faicons.FaTh/>,
       cName: 'nav-text',
     },
-    {
-        title: 'Announcements',
-        path: `/announcements/${subject}`,
-        icon: <faicons.FaBullhorn/>,
-        cName: 'nav-text',
-      },
-    {
+   {
       title: 'Calender',
       path: '/calendar',
       icon: <faicons.FaCalendarAlt/>,
@@ -51,8 +46,14 @@ export default function PostAssignment() {
     },
     {
       title: 'Chat',
-      path: '/chat',
+      path: '/chattry',
       icon: <IOicons.IoIosChatboxes/>,
+      cName: 'nav-text'
+    },
+    {
+      title: 'Back',
+      path: `/instructor_course/${username}/${subject}`,
+      icon: <BiArrowBack/>,
       cName: 'nav-text'
     },
     {

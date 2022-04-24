@@ -114,6 +114,12 @@ const sidemenu =[
     cName: 'nav-text',
   },
   {
+    title: 'Grades',
+    path: `/getgrades/${username}/${subject}`,
+    icon: <faicons.FaEdit/>,
+    cName: 'nav-text'
+  },
+  {
     title: 'Calender',
     path: '/calendar',
     icon: <faicons.FaCalendarAlt/>,
@@ -121,7 +127,7 @@ const sidemenu =[
   },
   {
     title: 'Chat',
-    path: '/chat',
+    path: '/chat/chattry',
     icon: <IOicons.IoIosChatboxes/>,
     cName: 'nav-text'
   },

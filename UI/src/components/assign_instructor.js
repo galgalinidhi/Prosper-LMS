@@ -53,7 +53,7 @@ export default function Assign_instructor(){
     <div align="center">
     <form onSubmit={handleSubmit}>
       <div className="input-group">
-      <label for="selectname">UserName</label>
+      <label for="selectname">Instructor UserName</label>
     <select className = "input-group" id="selectname" onChange ={handlechange} required value={userName} defaultValue={"--User Name--"}> 
        <option value="0">--User Name--</option> 
       {

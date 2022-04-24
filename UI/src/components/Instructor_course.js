@@ -6,9 +6,9 @@ import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
-import img1 from '../images/users.jpg'
-import img2 from '../images/ins.jpg'
-import img3 from '../images/approve.jpg'
+import img1 from '../images/announce.jpg'
+import img2 from '../images/assign.jpg'
+import img3 from '../images/grades.jpg'
 import { useParams,Link} from 'react-router-dom';
 
 const Card= props =>{
@@ -26,7 +26,7 @@ return(
 )
 }
 export default function Inst_course () {
-  const {subject} = useParams();
+  const {username,subject} = useParams();
   const[sidebar,setSidebar] = useState(false)
   const showSidebar =() => setSidebar(!sidebar)
   const sidemenu =[
@@ -56,7 +56,7 @@ export default function Inst_course () {
     },
     {
       title: 'Chat',
-      path: '/chat',
+      path: '/chattry',
       icon: <IOicons.IoIosChatboxes/>,
       cName: 'nav-text'
     },
@@ -104,13 +104,13 @@ export default function Inst_course () {
             <div className='row'>
              
              <div className='col-md-4'>
-              <Card imgsrc={img2} title= "Post Announcements"url={`/announcements/${subject}`}/>
+              <Card imgsrc={img1} title= "Post Announcements"url={`/announcements/${username}/${subject}`}/>
               </div>
               <div className='col-md-4'>
-              <Card  imgsrc={img3} title= "Create Assignments"url={`/postassignments/${subject}`}/>
+              <Card  imgsrc={img2} title= "Create Assignments"url={`/postassignments/${username}/${subject}`}/>
               </div> 
               <div className='col-md-4'>
-              <Card  imgsrc={img3} title= "Grade Assignments"url={`/gradeassignments/${subject}`}/>
+              <Card  imgsrc={img3} title= "Grade Assignments"url={`/gradeassignments/${username}/${subject}`}/>
               </div> 
              
             </div>

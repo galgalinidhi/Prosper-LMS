@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
+import * as Gicons from "react-icons/gi"
 import { IconContext } from 'react-icons/lib'
 import SD from '../components/student_dashboard'
 import {Table} from 'antd'
@@ -60,8 +61,14 @@ const sidemenu =[
   {
     title: 'Assignments',
     path:`/getassignments/${username}/${subject}`,
-    icon: <faicons.FaBullhorn/>,
+    icon: <Gicons.GiSpellBook/>,
     cName: 'nav-text',
+  },
+  {
+    title: 'Grades',
+    path: `/getgrades/${username}/${subject}`,
+    icon: <faicons.FaEdit/>,
+    cName: 'nav-text'
   },
   {
     title: 'Calender',
@@ -71,7 +78,7 @@ const sidemenu =[
   },
   {
     title: 'Chat',
-    path: '/chat',
+    path: '/chat/chattry',
     icon: <IOicons.IoIosChatboxes/>,
     cName: 'nav-text'
   },

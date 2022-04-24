@@ -2,9 +2,10 @@ import React,{Component} from 'react'
 import { BiArrowBack } from "react-icons/bi";
 import '../CSS/Grid.css'
 import '../bootstrap/dist/css/bootstrap.css'
-import img1 from '../images/users.jpg'
+import img1 from '../images/viewusers.jpg'
 import img2 from '../images/ins.jpg'
-import img3 from '../images/approve.jpg'
+import img3 from '../images/instructor.jpg'
+import img4 from '../images/students.jpg'
 
 const Card= props =>{
 return(
@@ -52,17 +53,17 @@ class MUGrid extends Component{
             <div className='container-fluid d-flex justify-content-center'>
             <div className='row'>
                           
-              <div className='col-md-4'>
+              <div className='col-md-3'>
                 <Card  imgsrc={img1} title= "View All Users"url='/getusers'/>
               </div> 
-             <div className='col-md-4'>
+             <div className='col-md-3'>
               <Card imgsrc={img2} title= "Assign Role"url='/assigninstructor'/>
               </div>
-              <div className='col-md-4'>
+              <div className='col-md-3'>
               <Card  imgsrc={img3} title= "Assign Instructor to Course"url='/mapinstructor'/>
               </div> 
-              <div className='col-md-4'>
-              <Card  imgsrc={img3} title= "Add student to course"url='/mapstudent'/>
+              <div className='col-md-3'>
+              <Card  imgsrc={img4} title= "Add student to course"url='/mapstudent'/>
               </div> 
              
             </div>

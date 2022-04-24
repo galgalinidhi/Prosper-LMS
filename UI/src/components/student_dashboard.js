@@ -45,12 +45,7 @@ function SD(){
       icon: <faicons.FaTh/>,
       cName: 'nav-text',
     },
-    {
-      title: 'Assignments',
-      path: '/getassignments',
-      icon: <Gicons.GiSpellBook/>,
-      cName: 'nav-text',
-    },
+   
     {
       title: 'Calender',
       path: '/calendar',

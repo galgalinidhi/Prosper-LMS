@@ -49,7 +49,7 @@ return (
       
       <ul className="nav navbar-nav navbar-right">
         
-        <li><a href="/admin_dashboard"><span className="adminlogout"><BiArrowBack/><span></span>Back</span></a></li>
+        <li><a href="/manageusers"><span className="adminlogout"><BiArrowBack/><span></span>Back</span></a></li>
       </ul>
     </div>
   </nav>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 import '../CSS/Register.css';
 
@@ -10,8 +11,9 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [contactNo, setContactNo] = useState("");
   
+  
 
-  async function register(){
+  async function Registeruser(){
     let item = {
         "userName": userName,
         "emailId": emailId,
@@ -33,7 +35,8 @@ export default function Register() {
     const json = await res.json();
     console.log(json);
 
-
+    
+ 
 
     
 } 
@@ -97,7 +100,7 @@ export default function Register() {
 
            
                 <p>
-                    <button id="sub_btn" type="submit" onClick={register}>Register</button>
+                    <button id="sub_btn" type="submit" onClick={Registeruser}>Register</button>
                 </p>
                
             </form>

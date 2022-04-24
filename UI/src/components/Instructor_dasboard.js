@@ -123,7 +123,7 @@ export default function InstDashboard () {
           <div className='row'>
           <div className='col-md-4'>
             <div className='cardbody'>
-          <Card imgsrc={img1} title={c.courseTitle} url={`/instructor_course/${c.courseTitle}`}/>
+          <Card imgsrc={img1} title={c.courseTitle} url={`/instructor_course/${username}/${c.courseTitle}`}/>
           </div>
           </div>
           </div>

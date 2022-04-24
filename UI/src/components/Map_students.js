@@ -128,7 +128,7 @@ export default function Map_Student(){
 }
     </select>
     </div>
-    <button  className="post-btn" type="Submit" value = "Submit">Assign</button>
+    <button  className="post-btn" type="Submit" value = "Submit">Add</button>
     </form>
     </div>
     </>

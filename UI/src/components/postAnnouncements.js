@@ -4,7 +4,7 @@ import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
 import { IconContext } from 'react-icons/lib'
-import * as Gicons from "react-icons/gi"
+import { BiArrowBack } from "react-icons/bi";
 import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
 import '../CSS/sidebar.css'
@@ -14,26 +14,19 @@ export default function PostAnnounce() {
   // const API = "localhost:8989/announcement/add";
   const[sidebar,setSidebar] = useState(false)
   const showSidebar =() => setSidebar(!sidebar)
-  const {subject} = useParams();
+  const {username,subject} = useParams();
   const post_title = useRef(null);
   const post_description = useRef(null);
   const [postResult, setPostResult] = useState(null);
 
-
-
   const sidemenu =[
     {
       title: 'Dashboard',
-      path: '/instructor_dashboard',
+      path: `/instructor_dashboard/${username}`,
       icon: <faicons.FaTh/>,
       cName: 'nav-text',
     },
-   {
-      title: 'Assignments',
-      path: `/postassignments/${subject}`,
-      icon: <Gicons.GiSpellBook/>,
-      cName: 'nav-text',
-    },
+   
     {
       title: 'Calender',
       path: '/calendar',
@@ -42,8 +35,14 @@ export default function PostAnnounce() {
     },
     {
       title: 'Chat',
-      path: '/chat',
+      path: '/chattry',
       icon: <IOicons.IoIosChatboxes/>,
+      cName: 'nav-text'
+    },
+    {
+      title: 'Back',
+      path: `/instructor_course/${username}/${subject}`,
+      icon: <BiArrowBack/>,
       cName: 'nav-text'
     },
     {
@@ -53,6 +52,8 @@ export default function PostAnnounce() {
       cName: 'nav-text'
     },
   ]
+
+  
  
   const fortmatResponse = (res) => {
     return JSON.stringify(res, null, 3);

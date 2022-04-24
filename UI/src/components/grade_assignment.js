@@ -7,7 +7,7 @@ import { Table,TableHead,TableCell,TableRow,TableBody,Button, makeStyles} from '
 import * as faicons from "react-icons/fa"
 import * as Aiicons from "react-icons/ai"
 import * as IOicons from "react-icons/io"
-import * as Gicons from "react-icons/gi"
+import { BiArrowBack } from "react-icons/bi";
 import { IconContext } from 'react-icons/lib'
 import '../CSS/announcement.css'
 import '../CSS/sidebar.css'
@@ -84,21 +84,21 @@ const sidemenu =[
   cName: 'nav-text',
 },
 {
-  title: 'Assignments',
-  path: `/postassignments/${subject}`,
-  icon: <Gicons.GiSpellBook/>,
-  cName: 'nav-text',
-},
-{
   title: 'Calender',
   path: '/calendar',
   icon: <faicons.FaCalendarAlt/>,
   cName: 'nav-text'
 },
 {
-  title: 'Chat',
+  title: 'Chattry',
   path: '/chat/chattry',
   icon: <IOicons.IoIosChatboxes/>,
+  cName: 'nav-text'
+},
+{
+  title: 'Back',
+  path: `/instructor_course/${username}/${subject}`,
+  icon: <BiArrowBack/>,
   cName: 'nav-text'
 },
 {
