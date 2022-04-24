@@ -29,7 +29,7 @@ const Getcourse = () =>
 {
 
   
-  axios.get(`http://localhost:8989/course/getCourse?userName=${userName}`)
+  axios.get(`http://149.165.153.133:8989/course/getCourse?userName=${userName}`)
   .then((response) => {
   console.log(response.data);
   setcourse(response.data);

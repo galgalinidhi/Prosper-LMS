@@ -88,7 +88,7 @@ export default function PostAssignment() {
                 }
               };
               
-   axios.post(`http://localhost:8989/assignment/uploadAssignment/${assignmentTitle}/${courseTitle}/${duedate}/${assignmentDescripton}`,formData,config)
+   axios.post(`http://149.165.153.133:8989/assignment/uploadAssignment/${assignmentTitle}/${courseTitle}/${duedate}/${assignmentDescripton}`,formData,config)
   .then((response) => {
   //console.log(response.data);
   console.log(duedate);

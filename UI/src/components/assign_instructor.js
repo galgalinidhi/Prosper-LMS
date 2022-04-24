@@ -9,7 +9,7 @@ export default function Assign_instructor(){
   const [userName, setUserName] = useState();
 
   useEffect(function(){
-    axios.get("http://localhost:8989/user/all")
+    axios.get("http://149.165.153.133:8989/user/all")
     .then((response) => setusers(response.data))
     .then((error) => console.log(error));
   },[]);
@@ -28,7 +28,7 @@ export default function Assign_instructor(){
   const handleSubmit = (e) => {
     
     console.log(userName)
-    axios.put("http://localhost:8989/user/create_instructor",{
+    axios.put("http://149.165.153.133:8989/user/create_instructor",{
       "userName": userName
   })
     e.preventDefault();

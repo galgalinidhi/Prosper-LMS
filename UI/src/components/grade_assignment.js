@@ -54,7 +54,7 @@ const GradeAssignment = () =>
     }, [])
 
     const getAllData = () => {
-axios.get(`http://localhost:8989/assignment/getStudentSubmission?`, { params: { courseTitle: subject}})
+axios.get(`http://149.165.153.133:8989/assignment/getStudentSubmission?`, { params: { courseTitle: subject}})
 .then((response) => {
 console.log(response.data);
 setassignments(response.data);
@@ -66,7 +66,7 @@ console.log(error);
 });
 }
 const downloadStudentData = async (submission_assignmentId) => {
-  window.open(`http://localhost:8989/assignment/downloadAssignment/${submission_assignmentId}`);
+  window.open(`http://149.165.153.133:8989/assignment/downloadAssignment/${submission_assignmentId}`);
 };
 
 

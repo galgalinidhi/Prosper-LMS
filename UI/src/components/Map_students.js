@@ -11,12 +11,12 @@ export default function Map_Student(){
   const [userName, setUserName] = useState();
   const [courseName, setCourseName] = useState();
   useEffect(function(){
-    axios.get("http://localhost:8989/user/student")
+    axios.get("http://149.165.153.133:8989/user/student")
     .then((response) => setusers(response.data))
     .then((error) => console.log(error));
   },[]);
   useEffect(function(){
-    axios.get("http://localhost:8989/course/get")
+    axios.get("http://149.165.153.133:8989/course/get")
     .then((response) => setcourses(response.data))
     .then((error) => console.log(error));
   },[]);
@@ -46,7 +46,7 @@ export default function Map_Student(){
   const handleSubmit = (e) => {
     
     console.log(userName)
-    axios.post("http://localhost:8989/user/map_student",{
+    axios.post("http://149.165.153.133:8989/user/map_student",{
       "userName": userName,
       "courseName": courseName
   })

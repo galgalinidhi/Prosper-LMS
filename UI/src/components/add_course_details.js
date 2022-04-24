@@ -9,7 +9,7 @@ import '../CSS/sidebar.css'
 
 
 export default function AddCourse() {
-  // const API = "localhost:8989/announcement/add";
+  // const API = "149.165.153.133:8989/announcement/add";
  
 const post_desc = useRef(null);
 const post_course = useRef(null);
@@ -32,7 +32,7 @@ const [postResult, setPostResult] = useState(null);
         
       }
     };
-    axios.post(`http://localhost:8989/course/add`,post_Data,config)
+    axios.post(`http://149.165.153.133:8989/course/add`,post_Data,config)
     .then((response) => {
     console.log(response.data);
     

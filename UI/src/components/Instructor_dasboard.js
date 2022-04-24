@@ -73,7 +73,7 @@ export default function InstDashboard () {
   const [course,setcourse]=useState([]);
   useEffect (() =>{
 
-    axios.get('http://localhost:8989/course/getCourse?', { params: { userName: username}})
+    axios.get('http://149.165.153.133:8989/course/getCourse?', { params: { userName: username}})
     .then((response) => {
     console.log(response.data);
     setcourse(response.data);

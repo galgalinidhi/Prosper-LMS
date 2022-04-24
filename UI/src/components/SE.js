@@ -62,7 +62,7 @@ const sidemenu =[
   
   useEffect (() =>{
 
-    axios.get(`http://localhost:8989/course/get/${subject}`)
+    axios.get(`http://149.165.153.133:8989/course/get/${subject}`)
     .then((response) => {
     console.log(response.data);
     setdetails(response.data);

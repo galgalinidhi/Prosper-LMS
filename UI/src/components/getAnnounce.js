@@ -115,8 +115,8 @@ useEffect (() =>{
   
 const getAssignment = () => {
  
-  axios.get('http://localhost:8989/announcement/get/approved?', { params: { courseTitle: subject}})
-  // axios.get("http://localhost:8989/announcement/get/approved?courseTitle=")
+  axios.get('http://149.165.153.133:8989/announcement/get/approved?', { params: { courseTitle: subject}})
+  // axios.get("http://149.165.153.133:8989/announcement/get/approved?courseTitle=")
   .then((response) => {
   console.log(response.data);
   setAssignmentList(response.data);

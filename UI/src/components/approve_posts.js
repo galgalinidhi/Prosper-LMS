@@ -34,7 +34,7 @@ const Approveposts = () =>
     }, [])
 
     const getAllData = () => {
-axios.get("http://localhost:8989/announcement/get/unapproved")
+axios.get("http://149.165.153.133:8989/announcement/get/unapproved")
 .then((response) => {
 console.log(response.data);
 setannouncemnets(response.data);
@@ -48,13 +48,13 @@ const Delete = async(announcementId) => {
   // //          "announcementTitle":announcementTitle
   // //  }
   // const item = { Title: announcementTitle };
-  //  const response = await axios.post("http://localhost:8989/announcement/approve/announcement", item);
+  //  const response = await axios.post("http://149.165.153.133:8989/announcement/approve/announcement", item);
   //  this.setState({ Id: response.data.announcementId });
   // console.log(response);
   let item = {
       "announcementId":announcementId
   }
-   let res = await fetch(`http://localhost:8989/announcement/delete?announcementId=${announcementId}`,{
+   let res = await fetch(`http://149.165.153.133:8989/announcement/delete?announcementId=${announcementId}`,{
       method: 'DELETE',
       headers: {
           "Access-Control-Allow-Origin": "*",
@@ -63,8 +63,8 @@ const Delete = async(announcementId) => {
         },
       body: JSON.stringify(item)
     })
-    // localhost:8989/announcement/approve/announcement?announcementId=61
-    // localhost:8989/course/getCourse?userName=hsjoshi96
+    // 149.165.153.133:8989/announcement/approve/announcement?announcementId=61
+    // 149.165.153.133:8989/course/getCourse?userName=hsjoshi96
     //.then(response => {
   //     return response.json()
   // });
@@ -81,7 +81,7 @@ const Approve = async(announcementId) => {
 let item = {
     "announcementId":announcementId
 }
- let res = await fetch(`http://localhost:8989/announcement/approve/announcement?announcementId=${announcementId}`,{
+ let res = await fetch(`http://149.165.153.133:8989/announcement/approve/announcement?announcementId=${announcementId}`,{
     method: 'PUT',
     headers: {
         "Access-Control-Allow-Origin": "*",

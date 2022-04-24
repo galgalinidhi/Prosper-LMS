@@ -27,7 +27,7 @@ export default function Login() {
             "userName": e.target[0].value,
             "password": e.target[1].value
     }
-         let res = await fetch(" http://localhost:8989/user/authentication",{
+         let res = await fetch(" http://149.165.153.133:8989/user/authentication",{
             method: 'POST',
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -56,7 +56,7 @@ export default function Login() {
 
         }
         
-    //     const res = await fetch("http://localhost:8989/user/authentication", 
+    //     const res = await fetch("http://149.165.153.133:8989/user/authentication", 
     //     {method: "POST" , 
     //     headers: { 'Content-Type': 'application/json' },
     //     body: JSON.stringify(item)});

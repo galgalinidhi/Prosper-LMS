@@ -21,9 +21,9 @@ export default function GradeDialogue (props) {
         console.log(assignment_grade);
         console.log(typeof(assignment_id));
     
-      // axios.put('http://localhost:8989/assignment/grade?',{ params: { submitAssignmentId: assignment_id,
+      // axios.put('http://149.165.153.133:8989/assignment/grade?',{ params: { submitAssignmentId: assignment_id,
       // grade:assignment_grade}})
-      axios.put(`http://localhost:8989/assignment/grade?submitAssignmentId=${assignment_id}&grade=${assignment_grade}`)
+      axios.put(`http://149.165.153.133:8989/assignment/grade?submitAssignmentId=${assignment_id}&grade=${assignment_grade}`)
       .then((response) => {
       console.log(response.data);
       

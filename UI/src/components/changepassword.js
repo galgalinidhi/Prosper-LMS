@@ -16,7 +16,7 @@ export default function Change_password() {
         "password": password,
         "token" : token
 }
-     let res = await fetch("http://localhost:8989/user/reset_password?",{
+     let res = await fetch("http://149.165.153.133:8989/user/reset_password?",{
         method: 'POST',
         headers: {
         

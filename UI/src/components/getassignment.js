@@ -66,7 +66,7 @@ const Approveposts = () =>
     }, [])
 
     const getAllData = () => {
-axios.get(`http://localhost:8989/assignment/get?`, { params: { courseTitle: subject}})
+axios.get(`http://149.165.153.133:8989/assignment/get?`, { params: { courseTitle: subject}})
 .then((response) => {
 console.log(response.data);
 setannouncemnets(response.data);
@@ -78,7 +78,7 @@ console.log(error);
 });
 }
 const downloadEmployeeData = async (assignmentId) => {
-  window.open(`http://localhost:8989/assignment/downloadFile/${assignmentId}`);
+  window.open(`http://149.165.153.133:8989/assignment/downloadFile/${assignmentId}`);
 };
 
 

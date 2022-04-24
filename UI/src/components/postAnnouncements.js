@@ -11,7 +11,7 @@ import '../CSS/sidebar.css'
 
 
 export default function PostAnnounce() {
-  // const API = "localhost:8989/announcement/add";
+  // const API = "149.165.153.133:8989/announcement/add";
   const[sidebar,setSidebar] = useState(false)
   const showSidebar =() => setSidebar(!sidebar)
   const {username,subject} = useParams();
@@ -69,7 +69,7 @@ export default function PostAnnounce() {
   
 
     try {
-      const res = await fetch("http://localhost:8989/announcement/add", {
+      const res = await fetch("http://149.165.153.133:8989/announcement/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

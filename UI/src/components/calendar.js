@@ -30,7 +30,7 @@
 //   componentDidMount() {
 
 
-//     axios.get('http://localhost:3001/events')
+//     axios.get('http://149.165.153.133:3001/events')
 //       .then(response => {
 //         console.log(response.data);
 //         let appointments = response.data;

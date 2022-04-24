@@ -21,7 +21,7 @@ export default function Register() {
         "password": password,
         "contactNo": contactNo
 }
-     let res = await fetch("http://localhost:8989/user/register",{
+     let res = await fetch("http://149.165.153.133:8989/user/register",{
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Register() {
 //       e.preventDefault();
 //       try{
 //           let res =
-//           fetch("http://localhost:8989/user/register", {
+//           fetch("http://149.165.153.133:8989/user/register", {
 //               method:"POST",
 //               body: JSON.stringify({
 //                 userName :userName,

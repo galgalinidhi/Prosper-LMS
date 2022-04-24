@@ -45,7 +45,7 @@ const GetGrades = () =>
     }, [])
 
     const getAllData = () => {
-axios.get(`http://localhost:8989/assignment/getGrade?userName=${username}&courseTitle=${subject}`)
+axios.get(`http://149.165.153.133:8989/assignment/getGrade?userName=${username}&courseTitle=${subject}`)
 .then((response) => {
 console.log(response.data);
 setgrades(response.data);

@@ -10,12 +10,12 @@ export default function Map_instructor(){
   const [userName, setUserName] = useState();
   const [courseName, setCourseName] = useState();
   useEffect(function(){
-    axios.get("http://localhost:8989/user/instructor")
+    axios.get("http://149.165.153.133:8989/user/instructor")
     .then((response) => setusers(response.data))
     .then((error) => console.log(error));
   },[]);
   useEffect(function(){
-    axios.get("http://localhost:8989/course/get")
+    axios.get("http://149.165.153.133:8989/course/get")
     .then((response) => setcourses(response.data))
     .then((error) => console.log(error));
   },[]);
@@ -45,7 +45,7 @@ export default function Map_instructor(){
   const handleSubmit = (e) => {
     
     console.log(userName)
-    axios.put("http://localhost:8989/user/assign_instructor",{
+    axios.put("http://149.165.153.133:8989/user/assign_instructor",{
       "userName": userName,
       "courseName": courseName
   })

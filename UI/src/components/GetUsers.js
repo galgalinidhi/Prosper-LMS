@@ -29,7 +29,7 @@ const GetAllUsers = () =>
     }, [])
 
     const getAllData = () => {
-axios.get("http://localhost:8989/user/getAlllDetails")
+axios.get("http://149.165.153.133:8989/user/getAlllDetails")
 .then((response) => {
 console.log(response.data);
 setUsers(response.data);
