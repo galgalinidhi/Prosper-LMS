@@ -128,5 +128,11 @@ public class AssignmentController {
 		logger.info("Assignment Controller : /getStudentSubmission [GET] courseTitle="+courseTitle);
 		return submitAssignmentService.getStudentSubmissionService(courseTitle);
 	}
+	
+	@GetMapping("/getGrade")
+	public List<SubmitAssignmentEntity> getStudenGradeController(@RequestParam String courseTitle, @RequestParam String userName) {
+		logger.info("Assignment Controller : /getStudentSubmission [GET] courseTitle="+courseTitle);
+		return submitAssignmentService.getStudentGradeService(courseTitle, userName);
+	}
 
 }

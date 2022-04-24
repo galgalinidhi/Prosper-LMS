@@ -13,13 +13,11 @@ com\Prosper\entity\RoleEntity.class
 com\Prosper\repository\CourseRepository.class
 com\Prosper\entity\AssignmentEntity.class
 com\Prosper\request\model\ChatStatus.class
-com\Prosper\controller\ChatController.class
 com\Prosper\request\model\AssignmentRequest.class
 com\Prosper\response\model\AnnouncementResponse.class
 com\Prosper\response\model\CourseResponse.class
 com\Prosper\repository\RoleRepository.class
 com\Prosper\repository\StudentMappedCourseRepository.class
-com\Prosper\service\WebSocketConfig.class
 com\Prosper\entity\CourseEntity.class
 com\Prosper\repository\AnnouncementRepository.class
 com\Prosper\response\model\AssignmentResponse.class

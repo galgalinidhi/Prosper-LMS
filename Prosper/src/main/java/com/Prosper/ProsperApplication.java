@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+//import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import com.Prosper.service.RoleService;
 import com.Prosper.service.UserService;
 
 @SpringBootApplication
-@EnableResourceServer 
+//@EnableResourceServer 
 public class ProsperApplication implements CommandLineRunner{
 	
 	@Autowired

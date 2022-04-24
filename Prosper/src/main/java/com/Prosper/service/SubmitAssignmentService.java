@@ -88,4 +88,9 @@ public class SubmitAssignmentService {
 		
 	}
 
+	public List<SubmitAssignmentEntity> getStudentGradeService(String courseTitle, String userName) {
+		List<SubmitAssignmentEntity> gradeList = submitAssignmentRepository.findByCourseTitleAndUserName(courseTitle, userName);
+		return gradeList;
+	}
+
 }
