@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { BiArrowBack } from "react-icons/bi";
 
 import axios from 'axios'
-import 'C:/Users/nidhi/Documents/git_UI/git/Software-Engineering-Spring2022/UI/src/CSS/announcement.css'
+import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
 import '../CSS/sidebar.css'
 
