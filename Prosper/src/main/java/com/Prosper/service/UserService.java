@@ -2,6 +2,7 @@ package com.Prosper.service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.mail.MessagingException;
@@ -18,11 +19,14 @@ import org.springframework.stereotype.Service;
 import com.Prosper.entity.UserEntity;
 import com.Prosper.repository.UserRepository;
 import com.Prosper.request.model.UserRequest;
+import com.Prosper.response.model.SMS;
 import com.Prosper.response.model.UserResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +38,9 @@ public class UserService {
 	
 	 @Autowired
 	 private JavaMailSender mailSender;
+	 
+	 @Autowired
+	 private TwiloService twiloService;
 	
 	private UserEntity userEntity = new UserEntity();
 	
@@ -71,6 +78,9 @@ public class UserService {
 			userEntity.password = hashPassword;
 			userRepository.save(userEntity);
 			String userId = userRepository.findUserByUserName(userRequestModel.userName);
+			
+//			twiloService.addUser(userRequestModel.contactNo, userRequestModel.userName);
+			
 			userResponse.userId = Integer.parseInt(userId);
 			userResponse.response = "User registred successfully!";
 			logger.info("userRegisterService : new userId: "+userId + " username: " + userRequestModel.userName);
@@ -100,6 +110,19 @@ public class UserService {
 				UserEntity UserInDB = userRepository.findByUserName(userRegisterRequest.userName);
 				String loginToken = hashPassword(userRegisterRequest.userName);
 				UserInDB.loginToken = loginToken;
+				
+				
+				Random rnd = new Random();
+			    int number = rnd.nextInt(999999);
+				String OTP = String.format("%06d", number);
+				SMS sms = new SMS();
+				sms.setTo(UserInDB.contactNo);
+				sms.setMessage("Welcome to Prosper! The OTP to login is:"+OTP);
+				twiloService.smsSubmit(sms);
+				logger.info("Service : SMS = "+userResponse.userName +" Contact Number:"+UserInDB.contactNo+" OTP:"+OTP);
+				UserInDB.OTP = OTP;
+				UserInDB.OTPTime = LocalDateTime.now();
+				
 				userRepository.save(UserInDB);
 	
 //				UserEntity userEntity = userRepository.findByUserName(userRegisterRequest.userName);

@@ -34,10 +34,14 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 	private AnnouncementResponse announcementResponse = new AnnouncementResponse();
 	
 	public AnnouncementResponse addAnnouncement(AnnouncementRequest announcementRequest) {
-		Long announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
-		if (announcementIdDB != null) {
+//		Long announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
+		
+		announcementEntity = announcementRepository.findByAnnouncementTitleAndCourseTitle(announcementRequest.announcementTitle, announcementRequest.courseTitle);
+		
+		
+		if (announcementEntity != null) {
 			announcementResponse.response = "Announcement title already exists";
-			logger.info("Announcement Exists (Service): announcementIdDB: "+announcementIdDB + " announcementTitle "+announcementRequest.announcementTitle);
+			logger.info("Announcement Exists (Service): announcementIdDB: "+announcementEntity.announcementId + " announcementTitle "+announcementRequest.announcementTitle);
 			return announcementResponse;
 		}
 		else {
@@ -55,10 +59,10 @@ private static final Logger logger = LogManager.getLogger(AnnouncementService.cl
 			
 			announcementRepository.save(announcementEntity);
 			
-			announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
-			announcementResponse.announcementId = announcementIdDB;
+//			announcementIdDB = announcementRepository.findAnnouncementIdByAnnouncementTitle(announcementRequest.announcementTitle);
+			announcementResponse.announcementId = announcementEntity.announcementId;
 			announcementResponse.response = "Announcement saved successfully!";
-			logger.info("Announcement Service: announcementIdDB: "+announcementIdDB + " announcementTitle "+announcementRequest.announcementTitle);
+			logger.info("Announcement Service: announcementIdDB: "+announcementEntity.announcementId + " announcementTitle "+announcementRequest.announcementTitle + "courseTitle:"+announcementEntity.announcementId);
 			return announcementResponse;
 		}
 	}

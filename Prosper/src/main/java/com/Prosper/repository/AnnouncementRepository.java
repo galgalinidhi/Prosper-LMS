@@ -27,4 +27,7 @@ public interface AnnouncementRepository extends JpaRepository<AnnouncementEntity
 	AnnouncementEntity findByAnnouncementId(Long announcementId);
 
 
+	AnnouncementEntity findByAnnouncementTitleAndCourseTitle(String announcementTitle, String courseTitle);
+
+
 }

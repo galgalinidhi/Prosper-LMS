@@ -1,5 +1,7 @@
 package com.Prosper.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -43,6 +45,12 @@ public class UserEntity {
 	 
 	 @Getter @Setter(AccessLevel.PACKAGE)
 	 public String loginToken;
+	 
+	 @Getter @Setter(AccessLevel.PACKAGE)
+	 public String OTP;
+	 
+	 @Getter @Setter(AccessLevel.PACKAGE)
+	 public LocalDateTime OTPTime;
 	 
 	 @PrePersist
 	 void preInsert() {
