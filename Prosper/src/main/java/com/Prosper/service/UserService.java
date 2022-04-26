@@ -118,7 +118,7 @@ public class UserService {
 				SMS sms = new SMS();
 				sms.setTo(UserInDB.contactNo);
 				sms.setMessage("Welcome to Prosper! The OTP to login is:"+OTP);
-				twiloService.smsSubmit(sms);
+//				twiloService.smsSubmit(sms);
 				logger.info("Service : SMS = "+userResponse.userName +" Contact Number:"+UserInDB.contactNo+" OTP:"+OTP);
 				UserInDB.OTP = OTP;
 				UserInDB.OTPTime = LocalDateTime.now();
