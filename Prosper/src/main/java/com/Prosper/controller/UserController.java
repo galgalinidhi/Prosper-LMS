@@ -72,6 +72,7 @@ public class UserController {
 		}
 	}
 	
+	@CrossOrigin(origins = {"http://149.165.153.133:3000/*", "http://149.165.153.133:3000", "http://149.165.153.133:3000/passwordreset", "http://localhost:3000", "*"})
 	@PutMapping("/forgot/password")
 	public ResponseEntity<UserResponse> postForgotPassword(@RequestBody UserRequest userRegisterRequest) {
 		logger.info("controller : user/forgot/password [PUT]");

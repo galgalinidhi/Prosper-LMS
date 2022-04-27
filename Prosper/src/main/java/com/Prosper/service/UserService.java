@@ -121,6 +121,9 @@ public class UserService {
 				sms.setTo(UserInDB.contactNo);
 				sms.setMessage("Welcome to Prosper! The OTP to login is:"+OTP);
 //				twiloService.smsSubmit(sms); //ONLY For Nidhi username we can demonstrate
+				if(userRegisterRequest.userName.matches("nidhi")) {
+					twiloService.smsSubmit(sms); //ONLY For Nidhi username we can demonstrate
+				}
 				logger.info("Service : SMS = "+userResponse.userName +" Contact Number:"+UserInDB.contactNo+" OTP:"+OTP);
 				UserInDB.OTP = OTP;
 				UserInDB.OTPTime = LocalDateTime.now();
