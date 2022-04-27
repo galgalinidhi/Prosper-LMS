@@ -4,6 +4,9 @@ import '../bootstrap/dist/css/bootstrap.css'
 import { Link } from 'react-router-dom';
 import GoogleBtn from './GoogleBtn'
 import '../CSS/Login.css'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 
 
@@ -38,10 +41,20 @@ export default function Login() {
          }).then(response => {
             return response.json()
         });
+       
         console.log(res);
         console.log(res.roleId);
         errormsg = res.response;
         console.log(errormsg);
+        if (errormsg=="Correct password!")
+        {
+            toast("Login successful!")
+        }
+        if (errormsg!="Correct password!")
+        {
+            toast("Incorrect Username or password!")
+        }
+        
         if(res.userId!= -1){
             
             if(res.roleId == 2){

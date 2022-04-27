@@ -3,6 +3,10 @@ import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+
 
 export default function Assign_instructor(){
   const [users,setusers] =useState([]);
@@ -31,7 +35,13 @@ export default function Assign_instructor(){
     axios.put("http://149.165.153.133:8989/user/create_instructor",{
       "userName": userName
   })
-    e.preventDefault();
+  .then((response) => {
+    if(response.status==200)
+    {
+      toast("Role Assigned!")
+    }
+  })
+   e.preventDefault();
 
   }; 
  

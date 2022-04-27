@@ -8,6 +8,9 @@ import { BiArrowBack } from "react-icons/bi";
 import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
 import '../CSS/sidebar.css'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 
 export default function PostAnnounce() {
@@ -18,6 +21,7 @@ export default function PostAnnounce() {
   const post_title = useRef(null);
   const post_description = useRef(null);
   const [postResult, setPostResult] = useState(null);
+
 
   const sidemenu =[
     {
@@ -77,10 +81,14 @@ export default function PostAnnounce() {
         },
         body: JSON.stringify(post_Data),
       });
-      if (!res.ok) {
-        const message = `An error has occured: ${res.status} - ${res.statusText}`;
-        throw new Error(message);
-      }
+      // if (!res.ok) {
+      //   const message = `An error has occured: ${res.status} - ${res.statusText}`;
+      //   throw new Error(message);
+      // }
+     if(res.status==200)
+     {
+       toast('Announcement Posted!')
+     }
       const data = await res.json();
       const result = {
         status: res.status + "-" + res.statusText,
@@ -90,7 +98,7 @@ export default function PostAnnounce() {
         },
         data: data,
       };
-      window.alert("Announcement posted");
+     
       //setPostResult(fortmatResponse(result));
     } catch (err) {
       setPostResult(err.message);

@@ -3,6 +3,9 @@ import axios from "axios";
 import { BiArrowBack } from "react-icons/bi";
 import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 export default function Map_instructor(){
   const [users,setusers] =useState([]);
@@ -48,6 +51,13 @@ export default function Map_instructor(){
     axios.put("http://149.165.153.133:8989/user/assign_instructor",{
       "userName": userName,
       "courseName": courseName
+  })
+  .then((response) =>{
+  console.log(response.status);
+  if(response.status==200)
+  {
+    toast('Instructor assigned to course!')
+  }
   })
     e.preventDefault();
 

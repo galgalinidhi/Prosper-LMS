@@ -152,6 +152,8 @@ return (
                 <TableCell>Assignment Title</TableCell>
                 <TableCell>Student Name</TableCell>
                 <TableCell>Username</TableCell>
+                <TableCell>  </TableCell>
+                <TableCell>  </TableCell>
                
             </TableRow>
         </TableHead>

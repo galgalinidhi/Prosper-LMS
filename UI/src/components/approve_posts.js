@@ -94,7 +94,9 @@ let item = {
 console.log(res);
 const json = await res.json();
 console.log(json); 
-window.location.reload();
+useEffect (() =>{
+  getAllData();
+}, [])
 }
 return (
     <>

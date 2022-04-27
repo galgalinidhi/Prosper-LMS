@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 import '../CSS/Register.css';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 export default function Register() {
 
@@ -31,7 +34,10 @@ export default function Register() {
     //     return response.json()
     // });
     // console.log(res);
-    console.log(res);
+    if(res.status==200)
+    {
+    toast("Registration successful!")
+    }
     const json = await res.json();
     console.log(json);
 

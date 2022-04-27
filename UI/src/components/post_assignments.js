@@ -10,10 +10,13 @@ import Button from "@material-ui/core/Button";
 import  DatePicker  from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import AddIcon from "@material-ui/icons/Add"
-
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
 import '../CSS/sidebar.css'
+toast.configure()
+
 
 
 
@@ -90,8 +93,11 @@ export default function PostAssignment() {
               
    axios.post(`http://149.165.153.133:8989/assignment/uploadAssignment/${assignmentTitle}/${courseTitle}/${duedate}/${assignmentDescripton}`,formData,config)
   .then((response) => {
-  //console.log(response.data);
-  console.log(duedate);
+   if(response.status==200)
+    {
+    toast("Assignment Posted!")
+    }
+  //console.log(duedate);
   
   
   })
@@ -100,7 +106,7 @@ export default function PostAssignment() {
   });
     
       
-    
+ 
     
 }
   
@@ -185,8 +191,9 @@ export default function PostAssignment() {
 </div>
 
 <div>
+
+
 <DatePicker 
-    
     selected={selectedDate} onChange={date => setdate(date)}
      minDate ={new Date()}
      dateFormat= "MM-dd-yyyy"

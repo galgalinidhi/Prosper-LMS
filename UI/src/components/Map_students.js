@@ -4,6 +4,7 @@ import { BiArrowBack } from "react-icons/bi";
 import '../CSS/announcement.css'
 import '../bootstrap/dist/css/bootstrap.css'
 import { ColorLensTwoTone } from "@material-ui/icons";
+import { toast } from "react-toastify";
 
 export default function Map_Student(){
   const [users,setusers] =useState([]);
@@ -54,7 +55,11 @@ export default function Map_Student(){
     console.log(response.status);
     if(response.status == 200)
     {
-      Add_chatuser();
+      toast("Student Added to course");
+    }
+    else
+    {
+      toast("Student already added to course");
     }
 
     })
@@ -62,33 +67,34 @@ export default function Map_Student(){
     e.preventDefault();
 
   };
-  const Add_chatuser =() => {
-  var axios = require('axios');
-  const data = {
-    "username": "barney",
-    "secret": "secret_key123",
-    "custom_json": {"coursename": "Software Engineering"},
+//   const Add_chatuser =() => {
+//   var axios = require('axios');
+//   const data = {
+//     "username": "barney",
+//     "secret": "secret_key123",
+//     "custom_json": {"coursename": "Software Engineering"},
      
     
-  };
+//   };
   
-  var config = {
-    method: 'post',
-    url: 'https://api.chatengine.io/users/',
-    headers: {
-      "Private-Key": "6d76d9c3-5747-407a-b859-6e7946a35d37"
-    },
-    data : data
-  };
+//   var config = {
+//     method: 'post',
+//     url: 'https://api.chatengine.io/users/',
+//     headers: {
+//       "Private-Key": "6d76d9c3-5747-407a-b859-6e7946a35d37"
+//     },
+//     data : data
+//   };
   
-  axios(config)
-  .then(function (response) {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+//   axios(config)
+//   .then(function (response) {
+//     console.log(JSON.stringify(response.data));
+    
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+// }
   return(
     <>
      <nav className="navbar navbar-inverse">
