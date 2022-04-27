@@ -41,6 +41,8 @@ public class UserService {
 	 
 	 @Autowired
 	 private TwiloService twiloService;
+	 
+	
 	
 	private UserEntity userEntity = new UserEntity();
 	
@@ -118,7 +120,7 @@ public class UserService {
 				SMS sms = new SMS();
 				sms.setTo(UserInDB.contactNo);
 				sms.setMessage("Welcome to Prosper! The OTP to login is:"+OTP);
-//				twiloService.smsSubmit(sms);
+//				twiloService.smsSubmit(sms); //ONLY For Nidhi username we can demonstrate
 				logger.info("Service : SMS = "+userResponse.userName +" Contact Number:"+UserInDB.contactNo+" OTP:"+OTP);
 				UserInDB.OTP = OTP;
 				UserInDB.OTPTime = LocalDateTime.now();
@@ -171,7 +173,7 @@ public class UserService {
 			userEntity.resetPasswordToken = token;
 			userRepository.save(userEntity);
 			try {
-				String resetPasswordLink = "http://localhost:3000/changepassword" + "?token=" + "token";
+				String resetPasswordLink = "http://149.165.153.133:3000/changepassword" + "?token=" + "token";
 				 sendEmail(userRegisterRequest.emailId, resetPasswordLink, token);
 				 logger.info("Email sent");
 			} catch (UnsupportedEncodingException | MessagingException e) {

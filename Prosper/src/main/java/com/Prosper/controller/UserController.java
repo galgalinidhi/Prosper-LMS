@@ -2,6 +2,7 @@ package com.Prosper.controller;
 
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -150,7 +151,7 @@ public class UserController {
 	private StudentMappedCourseService mappedCourseService;
 	
 	@PostMapping("/map_student")
-	public ResponseEntity<String> mapStudentWithCourse(@RequestBody UserRequest userRequest){
+	public ResponseEntity<String> mapStudentWithCourse(@RequestBody UserRequest userRequest) throws InterruptedException, ExecutionException{
 		logger.info("controller: user/map_student [POST]");
 		String userResponse = mappedCourseService.mapStudentCourseService(userRequest);
 		if (userResponse == "already mapped") {
