@@ -201,7 +201,7 @@ public class UserService {
 	     
 	    String subject = "Here's the link to reset your password!!";
 	     
-	    String content = "<p>Hello,</p>"
+	    String content = "<p>Hello from Prosper,</p>"
 	            + "<p>You have requested to reset your password.</p>"
 	            + "<p>Click the link below to change your password:</p>"
 	            + "<p><a href=\"" + link + "\">Change my password</a></p>"
