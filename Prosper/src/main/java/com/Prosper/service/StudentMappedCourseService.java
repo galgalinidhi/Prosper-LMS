@@ -23,9 +23,9 @@ public class StudentMappedCourseService {
 	
 	@Autowired
 	private StudentMappedCourseRepository mappedCourseRepository;
-	
-	 @Autowired
-	 private FireBaseMappingService fireBaseMappingService;
+
+//	 @Autowired
+//	 private FireBaseMappingService fireBaseMappingService;
 	
 	private StudentMappedCourseEntity mappedCourseEntity;
 	
@@ -40,8 +40,8 @@ public class StudentMappedCourseService {
 		}
 		mappedCourseEntity.userName = userRequest.userName;
 		mappedCourseEntity.courseName = userRequest.courseName;
-		FireBaseMapping fbmapping = new FireBaseMapping(userRequest.courseName, userRequest.userName); 
-		fireBaseMappingService.savePatientDetails(fbmapping);
+//		FireBaseMapping fbmapping = new FireBaseMapping(userRequest.courseName, userRequest.userName); 
+//		fireBaseMappingService.savePatientDetails(fbmapping);
 		mappedCourseRepository.save(mappedCourseEntity);
 		
 		
