@@ -9,6 +9,7 @@ import { IconContext } from 'react-icons/lib'
 import img1 from '../images/announce.jpg'
 import img2 from '../images/assign.jpg'
 import img3 from '../images/grades.jpg'
+import img4 from '../images/module.jpg'
 import { useParams,Link} from 'react-router-dom';
 
 const Card= props =>{
@@ -48,12 +49,7 @@ export default function Inst_course () {
     //   icon: <Gicons.GiSpellBook/>,
     //   cName: 'nav-text',
     // },
-    {
-      title: 'Calender',
-      path: '/calendar',
-      icon: <faicons.FaCalendarAlt/>,
-      cName: 'nav-text'
-    },
+   
     {
       title: 'Chat',
       path: '/chattry',
@@ -103,14 +99,17 @@ export default function Inst_course () {
             <div className='container-fluid d-flex justify-content-center'>
             <div className='row'>
              
-             <div className='col-md-4'>
+             <div className='col-md-3'>
               <Card imgsrc={img1} title= "Post Announcements"url={`/announcements/${username}/${subject}`}/>
               </div>
-              <div className='col-md-4'>
+              <div className='col-md-3'>
               <Card  imgsrc={img2} title= "Create Assignments"url={`/postassignments/${username}/${subject}`}/>
               </div> 
-              <div className='col-md-4'>
+              <div className='col-md-3'>
               <Card  imgsrc={img3} title= "Grade Assignments"url={`/gradeassignments/${username}/${subject}`}/>
+              </div> 
+              <div className='col-md-3'>
+              <Card  imgsrc={img4} title= "Upload Lecture Videos"url={`/uploadmodule/${username}/${subject}`}/>
               </div> 
              
             </div>

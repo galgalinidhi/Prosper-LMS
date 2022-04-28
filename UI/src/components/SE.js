@@ -30,6 +30,12 @@ const sidemenu =[
     cName: 'nav-text',
   },
   {
+    title: 'Modules',
+    path: `/viewmodules/${username}/${subject}`,
+    icon: <faicons.FaVideo/>,
+    cName: 'nav-text',
+  },
+  {
     title: 'Assignments',
     path: `/getassignments/${username}/${subject}`,
     icon: <Gicons.GiSpellBook/>,

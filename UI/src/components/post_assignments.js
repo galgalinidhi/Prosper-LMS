@@ -41,12 +41,7 @@ export default function PostAssignment() {
       icon: <faicons.FaTh/>,
       cName: 'nav-text',
     },
-   {
-      title: 'Calender',
-      path: '/calendar',
-      icon: <faicons.FaCalendarAlt/>,
-      cName: 'nav-text'
-    },
+ 
     {
       title: 'Chat',
       path: '/chattry',

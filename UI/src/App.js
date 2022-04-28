@@ -29,6 +29,9 @@ import GradeAssignment from './components/grade_assignment';
 import Inst_course from './components/Instructor_course';
 import Chat_try from './components/chat_try';
 import Adduser from './components/addusers';
+import ViewModules from './components/view_modules';
+import Module from './components/module_player';
+import UploadModule from './components/upload_module';
 function App() {
   return (
     <BrowserRouter>
@@ -56,12 +59,15 @@ function App() {
       <Route exact path = "/mapstudent" element = {<Map_Student/>}/>
       <Route exact path = "/getannouncements/:username/:subject" element = {<Getpost/>}/>
       <Route exact path = "/getgrades/:username/:subject" element = {<GetGrades/>}/>
+      <Route exact path = "/viewmodules/:username/:subject" element = {<ViewModules/>}/>
+      <Route exact path = "/tryplayer" element = {<Module/>}/>
       <Route exact path = "/assigninstructor" element = {<Assign_instructor/>}/>
       <Route exact path = "/getusers" element = {<GetAllUsers/>}/>
       <Route exact path = "/gradeassignments/:username/:subject" element = {<GradeAssignment/>}/>
       <Route exact path = "/chat/:username" element = {<Chat/>}/>
       <Route exact path = "/chattry" element = {<Chat_try/>}/>
       <Route exact path = "/adduser" element = {<Adduser/>}/>
+      <Route exact path = "/uploadmodule/:username/:subject" element = {<UploadModule/>}/>
 
     </Routes>
     </BrowserRouter>

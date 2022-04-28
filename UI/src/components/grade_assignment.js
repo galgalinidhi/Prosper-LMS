@@ -83,12 +83,7 @@ const sidemenu =[
   icon: <faicons.FaTh/>,
   cName: 'nav-text',
 },
-{
-  title: 'Calender',
-  path: '/calendar',
-  icon: <faicons.FaCalendarAlt/>,
-  cName: 'nav-text'
-},
+
 {
   title: 'Chattry',
   path: '/chat/chattry',
@@ -152,6 +147,7 @@ return (
                 <TableCell>Assignment Title</TableCell>
                 <TableCell>Student Name</TableCell>
                 <TableCell>Username</TableCell>
+                <TableCell>Comments </TableCell>
                 <TableCell>  </TableCell>
                 <TableCell>  </TableCell>
                
@@ -166,6 +162,7 @@ return (
                         <TableCell>{assignment.assignmentTitle}</TableCell>
                         <TableCell>{assignment.name}</TableCell>
                         <TableCell>{assignment.userName}</TableCell>
+                        <TableCell>{assignment.textSubmission}</TableCell>
                         <TableCell>
                         <button className='post-btn' onClick={() => downloadStudentData(assignment.studentSubmissionResponseId)}>Download</button>
                         </TableCell>

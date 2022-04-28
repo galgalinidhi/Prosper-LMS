@@ -119,12 +119,7 @@ const sidemenu =[
     icon: <faicons.FaEdit/>,
     cName: 'nav-text'
   },
-  {
-    title: 'Calender',
-    path: '/calendar',
-    icon: <faicons.FaCalendarAlt/>,
-    cName: 'nav-text'
-  },
+
   {
     title: 'Chat',
     path: '/chat/chattry',
