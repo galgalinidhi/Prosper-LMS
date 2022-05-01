@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {useState} from 'react'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+
 
 
 export default function Change_password() {
@@ -30,7 +34,12 @@ export default function Change_password() {
     console.log(res);
     const json = await res.json();
     console.log(json);
+    if (res.status == 200)
+    {
+        toast("Password changed!")
+    }
 } 
+
 
 
     return (

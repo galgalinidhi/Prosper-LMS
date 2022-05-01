@@ -132,9 +132,9 @@ export default function Login() {
                 <br />
                 <button type="submit" className='btn btn-primary' id='sub_btn'>Login</button>
                 <br />
-                <p>
+                {/* <p>
                     <GoogleBtn/>
-                </p>
+                </p> */}
                 <p><Link to="/passwordreset">Forgot password? </Link></p>
                
                

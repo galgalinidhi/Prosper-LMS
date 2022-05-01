@@ -21,7 +21,7 @@ export default function PasswordReset() {
             "emailId": emailId
     }
          let res = await fetch("http://149.165.153.133:8989/user/forgot/password",{
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json",
