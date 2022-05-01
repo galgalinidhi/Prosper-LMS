@@ -17,7 +17,7 @@ export default function Change_password() {
         "token" : token
 }
      let res = await fetch("http://149.165.153.133:8989/user/reset_password?",{
-        method: 'POST',
+        method: 'PUT',
         headers: {
         
             "Access-Control-Allow-Origin": "*",

@@ -17,7 +17,7 @@ export default function PasswordReset() {
     
     async function Reset(){
         let item = {
-            "userName":"hsjoshi",
+           
             "emailId": emailId
     }
          let res = await fetch("http://149.165.153.133:8989/user/forgot/password",{
