@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import GoogleBtn from './GoogleBtn'
 import '../CSS/Login.css'
 import {toast} from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
@@ -23,7 +24,7 @@ export default function Login() {
     //         history("/add")
     //     }
     // }, [])
-    async function login(e){
+    async function Auth(e){
         e.preventDefault();
         
         let item = {
@@ -49,6 +50,30 @@ export default function Login() {
         if (errormsg=="Correct password!")
         {
             toast("Login successful!")
+           
+	
+                const authObject ={'Private-Key':'97ef169a-a70b-4470-ae6d-22bfcc2e0b0d'}
+            
+                    
+                    axios.post("https://api.chatengine.io/users/",
+                    {'username': userName, 'secret':password},
+                    {'headers': authObject}
+                    )
+                    .then((response) => {
+                    console.log(response.data);
+                    })
+                    .catch((error) => {
+                    console.log(error);
+                    });
+                
+            
+            
+            
+            
+          
+           
+            localStorage.setItem('username', userName)
+            localStorage.setItem('password', password)
         }
         if (errormsg!="Correct password!")
         {
@@ -94,7 +119,7 @@ export default function Login() {
         <div className="text-center m-5-auto">
             <h2>Login</h2>
             <div className="col-sm-6 offset-sm-3">
-                <form onSubmit={login} target = "blank">
+                <form onSubmit={Auth} target = "blank">
                 <label>Username</label><br/>
                 <input type ="text" placeholder = "username" required
                 onChange={(e)=>setUserName(e.target.value)} 
@@ -107,9 +132,9 @@ export default function Login() {
                 <br />
                 <button type="submit" className='btn btn-primary' id='sub_btn'>Login</button>
                 <br />
-                {/* <p>
+                <p>
                     <GoogleBtn/>
-                </p> */}
+                </p>
                 <p><Link to="/passwordreset">Forgot password? </Link></p>
                
                

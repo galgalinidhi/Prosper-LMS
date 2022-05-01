@@ -52,7 +52,7 @@ export default function Inst_course () {
    
     {
       title: 'Chat',
-      path: '/chattry',
+      path: '/chat',
       icon: <IOicons.IoIosChatboxes/>,
       cName: 'nav-text'
     },

@@ -85,8 +85,8 @@ const sidemenu =[
 },
 
 {
-  title: 'Chattry',
-  path: '/chat/chattry',
+  title: 'Chat',
+  path: '/chat',
   icon: <IOicons.IoIosChatboxes/>,
   cName: 'nav-text'
 },

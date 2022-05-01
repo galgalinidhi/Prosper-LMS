@@ -64,8 +64,8 @@ function App() {
       <Route exact path = "/assigninstructor" element = {<Assign_instructor/>}/>
       <Route exact path = "/getusers" element = {<GetAllUsers/>}/>
       <Route exact path = "/gradeassignments/:username/:subject" element = {<GradeAssignment/>}/>
-      <Route exact path = "/chat/:username" element = {<Chat/>}/>
-      <Route exact path = "/chattry" element = {<Chat_try/>}/>
+      {/* <Route exact path = "/chat/:username" element = {<Chat/>}/> */}
+      <Route exact path = "/chat" element = {<Chat_try/>}/>
       <Route exact path = "/adduser" element = {<Adduser/>}/>
       <Route exact path = "/uploadmodule/:username/:subject" element = {<UploadModule/>}/>
 

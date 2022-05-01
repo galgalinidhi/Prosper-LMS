@@ -44,7 +44,7 @@ export default function PostAssignment() {
  
     {
       title: 'Chat',
-      path: '/chattry',
+      path: '/chat',
       icon: <IOicons.IoIosChatboxes/>,
       cName: 'nav-text'
     },
