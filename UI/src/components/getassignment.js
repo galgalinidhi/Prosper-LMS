@@ -173,7 +173,7 @@ return (
         <TableHead>
             <TableRow className={classes.tablebody}>
                 
-                <TableCell>Announcement Title</TableCell>
+                <TableCell>Assignment Title</TableCell>
                 <TableCell>Description</TableCell>
                 <TableCell>Due Date</TableCell>
                 <TableCell> </TableCell>
