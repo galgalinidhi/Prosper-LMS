@@ -1,5 +1,5 @@
 # Software-Engineering-Spring2022
-Group Project for course CSCI-P 565. <br>
+Project submission for CSCI B 535 Software Engineering I. <br>
 ## Project Name: Prosper <br>
 ## Project Descrpition: Learning Management System <br>
 ## Team members: <br>
